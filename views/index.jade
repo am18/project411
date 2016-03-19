@@ -3,6 +3,10 @@ extends layout
 block content
     h1= title
     p Welcome to #{title}
-    form(name="search", method="get")
+    form(name="search", method="post")
         input(type="text", name="input")
         input(type="submit", value="Search")
+    if locals.beers
+        ul
+            each beer in beers
+                li= beer
