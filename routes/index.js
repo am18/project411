@@ -9,6 +9,7 @@ var data;
 var beers = [];
 
 function search(input) {
+
     var options = { method: 'GET',
         url: 'http://api.brewerydb.com/v2/search/',
         qs:
@@ -21,7 +22,6 @@ function search(input) {
 
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
-
         obj = JSON.parse(body);
         data = obj['data'];
         for(i = 0; i < data.length; i++) {
