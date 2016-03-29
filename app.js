@@ -68,5 +68,6 @@ app.use(function(err, req, res, next) {
 });
 
 require('./routes/auth')(app, passport);
+require('./config/passport')(passport);
 
 module.exports = app;
