@@ -32,9 +32,14 @@ app.use(require('node-sass-middleware')({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/login', login);
+
+require('./routes/auth')(app, passport);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -67,6 +72,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-require('./routes/auth')(app, passport);
+
+require('./config/passport')(passport);
 
 module.exports = app;

@@ -3,6 +3,7 @@ extends layout
 block content
     h1= title
     p Welcome to #{title}
+    a.btn.btn-primary(href='/auth/facebook') Facebook
     form(name="search", method="post")
         input(type="text", name="input")
         input(type="submit", value="Search")
