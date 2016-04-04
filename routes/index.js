@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var configAuth = require('../config/auth');
+var Beer = require('../models/beer');
 
 //var mongoose = require('mongoose');
 
@@ -13,7 +15,7 @@ function search(input) {
     var options = { method: 'GET',
         url: 'http://api.brewerydb.com/v2/search/',
         qs:
-        { key: 'fcacff0f686f8721f8831c53d8d5b2d2',
+        { key: configAuth.breweryDB.apiKey,
             q: input,
             type: 'beer' },
         headers:
@@ -27,6 +29,12 @@ function search(input) {
         for(i = 0; i < data.length; i++) {
             beers.push(data[i]['name']);
             console.log(beers[i]);
+
+            // check if beer is already in database
+            Beer.findOne({});
+
+
+            //var newBeer =
         }
     });
 }
@@ -39,7 +47,12 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res) {
     console.log(req.body.input);
-    search(req.body.input);
+    if (req.body.input.length > 0) {
+        search(req.body.input);
+    }
+    else {
+        // display error using connect-flash
+    }
     res.render('index', { title: 'BeerBuddy', beers: beers });
 });
 
