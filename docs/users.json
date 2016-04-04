@@ -1,0 +1,10 @@
+{
+	"_id" : ObjectId("56fb5df8a1200c734918ea9f"), // primary key
+	"email" : "patels326@gmail.com", // email taken from facebook
+	"lastName" : "Patel", // last name taken from facebook
+	"firstName" : "Sanam" // first name taken from facebook
+	// facebook access token
+	"token" : "CAASHGVpPQoEBALsL1BzmEhpXqNB0RjCGG7CJyxZCWE2ZBCzucolbs30Y120tiQjy8kJGlJuoPZCjLVqoCCqcKOBtiQKflN5hjBYtuVL3SDRIomccBXrVmPX7pNFAcpU7ZBrylvWqqD55Onxi14EwQSSTRegZAG86A9sEwxgEFHzFbd5pE3Ow6NmQfDzxiZANeR4Jg2wlHcMgZDZD",
+	"id" : "10209196276413685", // user id taken from facebook
+	"__v" : 0
+}
