@@ -10,6 +10,7 @@ var request = require('request');
 var obj;
 var data;
 var beerNames = [];
+var beerObjects = [];
 
 function search(input) {
 
@@ -59,45 +60,57 @@ function search(input) {
                 obj = JSON.parse(body);
                 data = obj['data'];
                 for(i = 0; i < data.length; i++) {
-                    var id = data[i]['id'];
-                    var name = data[i]['name'];
-                    var description = data[i]['description'];
-                    var abv = data[i]['abv'];
+                    var newBeer = new Beer();
+                    newBeer.id = data[i]['id'];
+                    newBeer.name = data[i]['name'];
+                    newBeer.description = data[i]['description'];
+                    newBeer.abv = data[i]['abv'];
                     if (data[i].hasOwnProperty('labels')) {
-                        var image = data[i]['labels']['large'];
+                        newBeer.image = data[i]['labels']['large'];
                     }
 
-                    beerNames.push(name);
-                    console.log(beerNames[i]);
-
-                    // check if beer is already in database
-                    Beer.findOne({'id': id}, function(err, beer){
-                        if (err) {
-                            handleError(err);
-                        }
-                        if (beer) {
-                            // beer is already in database
-                        }
-                        else {
-                            // add new beer to database
-                            var newBeer = new Beer();
-                            newBeer.id = id;
-                            newBeer.name = name;
-                            newBeer.description = description;
-                            newBeer.abv = abv;
-                            newBeer.image = image;
-
-                            newBeer.save(function(err) {
-                                if (err) {
-                                    throw err;
-                                }
-                            });
-                        }
-                    });
+                    beerObjects.push(newBeer);
+                    console.log(beerObjects[i].name);
                 }
+                console.log("here");
+                addBeersToDatabase(beerObjects);
             });
+
         }
     });
+}
+
+function addBeersToDatabase(beerObjects) {
+
+    for (i = 0; i < beerObjects.length; i++) {
+        console.log(beerObjects[i].id);
+        // check if beer is already in database
+        Beer.count({id: beerObjects[i].id}, function(err, count){
+            if (err) {
+                handleError(err);
+            }
+            if (count == 0) {
+                // add new beer to database
+                var newBeer = new Beer();
+                newBeer.id = beerObjects[i].id;
+                newBeer.name = beerObjects[i].name;
+                newBeer.description = beerObjects[i].description;
+                newBeer.abv = beerObjects[i].abv;
+                newBeer.image = beerObjects[i].image;
+
+                beerObjects[i].save(function(err) {
+                    if (err) {
+                        throw err;
+                    }
+                });
+
+            }
+            else {
+                // beer is already in database
+            }
+        });
+    }
+
 }
 
 /* GET home page. */
