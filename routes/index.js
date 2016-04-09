@@ -34,13 +34,13 @@ function search(input) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'BeerBuddy' });
 });
 
 router.post('/', function(req, res) {
     console.log(req.body.input);
     search(req.body.input);
-    res.render('index', { title: 'Express', beers: beers });
+    res.render('index', { title: 'BeerBuddy', beers: beers });
 });
 
 module.exports = router;
