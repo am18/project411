@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var beerSchema = mongoose.Schema ({
-    id: String,
+    beerId: String,
     name: String,
     description: String,
     abv: String,

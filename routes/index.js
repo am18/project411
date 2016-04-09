@@ -61,7 +61,7 @@ function search(input) {
                 data = obj['data'];
                 for(i = 0; i < data.length; i++) {
                     var newBeer = new Beer();
-                    newBeer.id = data[i]['id'];
+                    newBeer.beerId = data[i]['id'];
                     newBeer.name = data[i]['name'];
                     newBeer.description = data[i]['description'];
                     newBeer.abv = data[i]['abv'];
@@ -72,7 +72,6 @@ function search(input) {
                     beerObjects.push(newBeer);
                     console.log(beerObjects[i].name);
                 }
-                console.log("here");
                 addBeersToDatabase(beerObjects);
             });
 
@@ -81,36 +80,33 @@ function search(input) {
 }
 
 function addBeersToDatabase(beerObjects) {
-
-    for (i = 0; i < beerObjects.length; i++) {
-        console.log(beerObjects[i].id);
-        // check if beer is already in database
-        Beer.count({id: beerObjects[i].id}, function(err, count){
-            if (err) {
-                handleError(err);
-            }
-            if (count == 0) {
-                // add new beer to database
-                var newBeer = new Beer();
-                newBeer.id = beerObjects[i].id;
-                newBeer.name = beerObjects[i].name;
-                newBeer.description = beerObjects[i].description;
-                newBeer.abv = beerObjects[i].abv;
-                newBeer.image = beerObjects[i].image;
-
-                beerObjects[i].save(function(err) {
-                    if (err) {
-                        throw err;
+    for(var i = 0; i < beerObjects.length; i++) {
+        //var currentBeer = beerObjects[i]; dont need this now
+        (function (currentBeer) {
+            Beer.findOne({ beerId: currentBeer.beerId},
+                function(err, beer) {
+                    if(!err && !beer) {
+                        console.log(currentBeer.beerId);
+                        var newBeer  = new Beer();
+                        newBeer.beerId = currentBeer.beerId;
+                        newBeer.name = currentBeer.name;
+                        newBeer.description = currentBeer.description;
+                        newBeer.abv = currentBeer.abv;
+                        newBeer.image = currentBeer.image;
+                        newBeer.save(function(err) {
+                            if (err) {
+                                throw err;
+                            }
+                        });
+                    } else if(!err) {
+                        console.log("Beer is in the system");
+                    } else {
+                        console.log("ERROR: " + err);
                     }
-                });
-
-            }
-            else {
-                // beer is already in database
-            }
-        });
+                }
+            );
+        })(beerObjects[i]);
     }
-
 }
 
 /* GET home page. */
