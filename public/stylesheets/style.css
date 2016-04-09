@@ -1,7 +1,30 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; text-align: center;}
+
+.jumbotron{
+  min-height: 500px;
+  background-size: cover;
+
+  margin-bottom: 8px;
+
+  background-image: url(beerr.jpeg);}
+
+input[type=text] {
+  width: 50%;
+
+
+  box-sizing: border-box;
+
+}
+input[type=submit] {
+  height: 3em;
+  margin: 0 0 0 10px;
+
+}
+
+h1 {text-align: center;}
 a {
   color: #00B7FF; }
 
