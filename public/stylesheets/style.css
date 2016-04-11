@@ -3,26 +3,57 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; text-align: center;}
 
-.jumbotron{
-  min-height: 500px;
-  background-size: cover;
+.jumbotron {
+  background: url(Img1.png) no-repeat center center;
+  min-height: 449px;
+  padding-bottom: 20px;
+}
 
-  margin-bottom: 8px;
 
-  background-image: url(beerr.jpeg);}
 
 input[type=text] {
-  width: 50%;
-
-
+  margin-top: 7em;
+  height: 42px;
+  width: 355px;
   box-sizing: border-box;
+
 
 }
 input[type=submit] {
-  height: 3em;
-  margin: 0 0 0 10px;
+  height: 42px;
+  width: 3em;
+  background-color: grey;
+  color: white;
+  border: none;
+  padding-top: 5px;
+  margin: 3px;
+}
+.logo{
+  max-height: 100px;
+}
+
+.navicon{
+  max-width: 100px;
 
 }
+
+.jumbotron .container{
+  padding-top: 10em;
+
+}
+
+.fa.fa-facebook-official{
+  float: left;
+  padding-top: 3px;
+  padding-right: 2px;
+}
+.btn.btn-primary{font-size: 12px;}
+
+
+
+::-webkit-input-placeholder::before { font-family: fontAwesome; content:'\f002  '; font-size: 17px; }
+
+
 
 h1 {text-align: center;}
 a {
