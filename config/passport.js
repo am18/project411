@@ -9,6 +9,7 @@ module.exports = function (passport) {
     });
 
     passport.deserializeUser(function(id, done){
+        console.log("deserialize");
         User.findById(id, function(err, user){
             done(err, user);
         });
@@ -18,11 +19,11 @@ module.exports = function (passport) {
             clientID: configAuth.facebookAuth.clientID,
             clientSecret: configAuth.facebookAuth.clientSecret,
             callbackURL: configAuth.facebookAuth.callbackURL,
-            profileFields: ['id', 'name', 'email']
+            profileFields: ['id', 'name', 'emails']
         },
         function(accessToken, refreshToken, profile, done) {
             process.nextTick(function() {
-                User.findOne({'id': profile.id}, function(err, user){
+                User.findOne({'userId': profile.id}, function(err, user){
                     if (err) {
                         return done(err);
                     }
@@ -31,7 +32,7 @@ module.exports = function (passport) {
                     }
                     else {
                         var newUser = new User();
-                        newUser.id = profile.id;
+                        newUser.userId = profile.id;
                         newUser.token = accessToken;
                         newUser.firstName = profile.name.givenName;
                         newUser.lastName = profile.name.familyName;
@@ -45,7 +46,6 @@ module.exports = function (passport) {
                                 return done(null, newUser);
                             }
                         });
-                        console.log(profile);
                     }
                 });
                 console.log('logged in');

@@ -9,7 +9,6 @@ var Search = require('../models/search');
 var request = require('request');
 var obj;
 var data;
-var beerNames = [];
 var beerObjects = [];
 
 function search(input) {
@@ -99,7 +98,7 @@ function addBeersToDatabase(beerObjects) {
                             }
                         });
                     } else if(!err) {
-                        console.log("Beer is in the system");
+                        console.log("Beer is in the database");
                     } else {
                         console.log("ERROR: " + err);
                     }
@@ -107,6 +106,10 @@ function addBeersToDatabase(beerObjects) {
             );
         })(beerObjects[i]);
     }
+}
+
+if (typeof req != 'undefined') {
+    console.log(req.user.userId);
 }
 
 /* GET home page. */
@@ -122,7 +125,7 @@ router.post('/', function(req, res) {
     else {
         // display error using connect-flash
     }
-    res.render('index', { title: 'BeerBuddy', beers: beerNames });
+    res.render('index', { title: 'BeerBuddy', beers: beerObjects });
 });
 
 module.exports = router;
