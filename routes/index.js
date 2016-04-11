@@ -108,12 +108,11 @@ function addBeersToDatabase(beerObjects) {
     }
 }
 
-if (typeof req != 'undefined') {
-    console.log(req.user.userId);
-}
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    if (typeof req.user != 'undefined') {
+        console.log(req.user.userId);
+    }
     res.render('index', { title: 'BeerBuddy' });
 });
 

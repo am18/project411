@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var db = require('./config/db');
 var passport = require('passport');
 var session = require('express-session');
+var config = require('./config/auth');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -24,8 +25,8 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(session({ secret: 'beerbuddy' }));
+app.use(cookieParser(config.session.secret));
+app.use(session({ secret: config.session.secret, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(require('node-sass-middleware')({

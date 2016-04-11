@@ -9,7 +9,6 @@ module.exports = function (passport) {
     });
 
     passport.deserializeUser(function(id, done){
-        console.log("deserialize");
         User.findById(id, function(err, user){
             done(err, user);
         });
@@ -36,8 +35,9 @@ module.exports = function (passport) {
                         newUser.token = accessToken;
                         newUser.firstName = profile.name.givenName;
                         newUser.lastName = profile.name.familyName;
-                        newUser.email = profile.emails[0].value;
-
+                        if (typeof profile.emails != 'undefined') {
+                            newUser.email = profile.emails[0].value;
+                        }
                         newUser.save(function(err) {
                             if (err) {
                                 throw err;
@@ -48,7 +48,6 @@ module.exports = function (passport) {
                         });
                     }
                 });
-                console.log('logged in');
             });
         }
     ));
