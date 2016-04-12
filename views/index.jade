@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+    .navbar.navbar-inverse.navbar-fixed-top(role='navigation')  
         .container
             .navbar-header
                 button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
@@ -9,30 +9,29 @@ block content
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
-                a.navbar-brand(href='#') Beer Buddy
+                a.navbar-brand(href='#')
+                    //img(alt='Brand', src='../stylesheets/Icon_BeerBuddy.png')
+                    img.navicon(src='../images/Icon_BeerBuddy.png')
             .navbar-collapse.collapse
                 form.navbar-form.navbar-right(role='form')
-                    a.btn.btn-primary(href='/auth/facebook') Facebook
+                        a.btn.btn-primary(href='/auth/facebook') Log in with Facebook
+                            i.fa.fa-facebook-official
 
             // /.navbar-collapse
     // Main jumbotron for a primary marketing message or call to action
-    .jumbotron
+    .jumbotron.jumbotron-fluid
         .container
+            .row
+                .col-lg-12
+                    img.logo(src='../images/logo_BeerBuddy.png')
+                    form.search(name="search", method="post")
+                        input(type="text", name="input", placeholder= "Search for a beer...")
+                        input(type='submit', value='Go')
 
-            h1= title
-            p Welcome to #{title}
-            p Search for your favorite beer!
-            i.fa.fa-facebook-official
-
-            form(name="search", method="post")
-                input(type="text", name="input")
-                input(type="submit", value="Search")
-
-            // show beer names if beers is defined
-            if locals.beers
-                ul
-                    each beer in beers
-                        li= beer.name
+                        if locals.beers
+                             ul
+                                each beer in beers
+                                    li= beer.name
 
 
     .container
@@ -60,8 +59,3 @@ block content
         footer
             p &copy; Company 2014
     // /container
-
-    // Bootstrap core JavaScript
-    // ==================================================
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
-    script(src='#{pathToAssets}/dist/js/bootstrap.min.js')
