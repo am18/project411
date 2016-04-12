@@ -35,7 +35,9 @@ function search(input) {
                     handleError(err);
                 }
                 if (beers) {
-                    console.log(beers);
+                    for (i = 0; i < beers.length; i++) {
+                        beerObjects.push(beers[i]);
+                    }
                 }
                 else {
                     console.log('no beers found');
@@ -69,7 +71,6 @@ function search(input) {
                     }
 
                     beerObjects.push(newBeer);
-                    console.log(beerObjects[i].name);
                 }
                 addBeersToDatabase(beerObjects);
             });
@@ -85,7 +86,6 @@ function addBeersToDatabase(beerObjects) {
             Beer.findOne({ beerId: currentBeer.beerId},
                 function(err, beer) {
                     if(!err && !beer) {
-                        console.log(currentBeer.beerId);
                         var newBeer  = new Beer();
                         newBeer.beerId = currentBeer.beerId;
                         newBeer.name = currentBeer.name;
@@ -97,9 +97,11 @@ function addBeersToDatabase(beerObjects) {
                                 throw err;
                             }
                         });
-                    } else if(!err) {
-                        console.log("Beer is in the database");
-                    } else {
+                    }
+                    else if(!err) {
+                        // beer is already in database
+                    }
+                    else {
                         console.log("ERROR: " + err);
                     }
                 }
@@ -117,7 +119,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res) {
-    console.log(req.body.input);
     if (req.body.input.length > 0) {
         search(req.body.input);
     }
