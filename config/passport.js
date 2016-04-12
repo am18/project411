@@ -18,11 +18,11 @@ module.exports = function (passport) {
             clientID: configAuth.facebookAuth.clientID,
             clientSecret: configAuth.facebookAuth.clientSecret,
             callbackURL: configAuth.facebookAuth.callbackURL,
-            profileFields: ['id', 'name', 'email']
+            profileFields: ['id', 'name', 'emails']
         },
         function(accessToken, refreshToken, profile, done) {
             process.nextTick(function() {
-                User.findOne({'id': profile.id}, function(err, user){
+                User.findOne({'userId': profile.id}, function(err, user){
                     if (err) {
                         return done(err);
                     }
@@ -31,12 +31,13 @@ module.exports = function (passport) {
                     }
                     else {
                         var newUser = new User();
-                        newUser.id = profile.id;
+                        newUser.userId = profile.id;
                         newUser.token = accessToken;
                         newUser.firstName = profile.name.givenName;
                         newUser.lastName = profile.name.familyName;
-                        newUser.email = profile.emails[0].value;
-
+                        if (typeof profile.emails != 'undefined') {
+                            newUser.email = profile.emails[0].value;
+                        }
                         newUser.save(function(err) {
                             if (err) {
                                 throw err;
@@ -45,10 +46,8 @@ module.exports = function (passport) {
                                 return done(null, newUser);
                             }
                         });
-                        console.log(profile);
                     }
                 });
-                console.log('logged in');
             });
         }
     ));
