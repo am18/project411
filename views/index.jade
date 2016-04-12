@@ -11,13 +11,11 @@ block content
                     span.icon-bar
                 a.navbar-brand(href='#')
                     //img(alt='Brand', src='../stylesheets/Icon_BeerBuddy.png')
-                    img.navicon(src='../stylesheets/Icon_BeerBuddy.png')
+                    img.navicon(src='../images/Icon_BeerBuddy.png')
             .navbar-collapse.collapse
                 form.navbar-form.navbar-right(role='form')
                         a.btn.btn-primary(href='/auth/facebook') Log in with Facebook
                             i.fa.fa-facebook-official
-
-
 
             // /.navbar-collapse
     // Main jumbotron for a primary marketing message or call to action
@@ -25,10 +23,10 @@ block content
         .container
             .row
                 .col-lg-12
-                    img.logo(src='../stylesheets/logo_BeerBuddy.png')
+                    img.logo(src='../images/logo_BeerBuddy.png')
                     form.search(name="search", method="post")
                         input(type="text", name="input", placeholder= "Search for a beer...")
-                        input(type="submit", value="Go")
+                        input(type='submit', value='Go')
 
                         if locals.beers
                              ul
@@ -61,7 +59,3 @@ block content
         footer
             p &copy; Company 2014
     // /container
-
-    // Bootstrap core JavaScript
-    // ==================================================
-    //script(src='#{pathToAssets}/dist/js/bootstrap.min.js')
