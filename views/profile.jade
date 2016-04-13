@@ -1,4 +1,164 @@
 extends layout
 
 block content
-    h1 profile page
+
+    .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+        .container
+            .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href='#')
+                    //img(alt='Brand', src='../stylesheets/Icon_BeerBuddy.png')
+                    img.navicon(src='../images/Icon_BeerBuddy.png')
+            .navbar-collapse.collapse
+
+
+
+
+
+    head
+        link(rel='stylesheet', href='/stylesheets/profile.css')
+    #content.clearfix
+        section#left
+            #userStats.clearfix
+                .pic
+                    a(href='#')
+                        img(src='img/user_avatar.jpg', width='150', height='150')
+                .data
+                    h1 Johnny Appleseed
+                    .sep
+                    ul.numbers.clearfix
+                        li
+                            | Favorite Beers
+                            strong 185
+                        li
+                            | Friends
+                            strong 106
+        section#right
+            .gcontent
+                .head
+                    h1 Friends List
+                .boxy
+                    p Your friends - 106 total
+                    .friendslist.clearfix
+                        .friend
+                            a(href='#')
+                                img(src='img/friend_avatar_default.jpg', width='30', height='30', alt='Jerry K.')
+                            span.friendly
+                                a(href='#') Jerry K.
+                        .friend
+                            a(href='#')
+                                img(src='img/friend_avatar_default.jpg', width='30', height='30', alt='Katie F.')
+                            span.friendly
+                                a(href='#') Katie F.
+                        .friend
+                            a(href='#')
+                                img(src='img/friend_avatar_default.jpg', width='30', height='30', alt='Ash K.')
+                            span.friendly
+                                a(href='#') Ash K.
+                        .friend
+                            a(href='#')
+                                img(src='img/friend_avatar_default.jpg', width='30', height='30', alt='Sponge B.')
+                            span.friendly
+                                a(href='#') Sponge B.
+                        .friend
+                            a(href='#')
+                                img(src='img/friend_avatar_default.jpg', width='30', height='30', alt='Frank')
+                            span.friendly
+                                a(href='#') Frank
+                        .friend
+                            a(href='#')
+                                img(src='img/friend_avatar_default.jpg', width='30', height='30', alt='Alexa S.')
+                            span.friendly
+                                a(href='#') Alexa S.
+                    span
+                        a(href='#') See all...
+
+    .container
+        // Page Heading
+        .row
+            .col-lg-12
+                h1.page-header
+                    | Favorite Beers
+
+        // /.row
+        // Projects Row
+        .row
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+        // /.row
+        // Projects Row
+        .row
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+        // /.row
+        // Projects Row
+        .row
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+        // /.row
+        hr
+        // Pagination
+        .row.text-center
+            .col-lg-12
+                ul.pagination
+                    li
+                        a(href='#') «
+                    li.active
+                        a(href='#') 1
+                    li
+                        a(href='#') 2
+                    li
+                        a(href='#') 3
+                    li
+                        a(href='#') 4
+                    li
+                        a(href='#') 5
+                    li
+                        a(href='#') »
+        // /.row
+        hr
+        // Footer
+        footer
+            .row
+                .col-lg-12
+                    p Copyright © Your Website 2014
+            // /.row
+    // /.container
+    // jQuery
+    script(src='js/jquery.js')
+    // Bootstrap Core JavaScript
+    script(src='js/bootstrap.min.js')

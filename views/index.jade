@@ -35,27 +35,88 @@ block content
 
 
     .container
-        // Example row of columns
+        // Page Heading
         .row
-            .col-md-4
-                h2 Heading
-                p
-                    | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-                p
-                    a.btn.btn-default(href='#', role='button') View details &raquo;
-            .col-md-4
-                h2 Heading
-                p
-                    | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-                p
-                    a.btn.btn-default(href='#', role='button') View details &raquo;
-            .col-md-4
-                h2 Heading
-                p
-                    | Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                p
-                    a.btn.btn-default(href='#', role='button') View details &raquo;
+            .col-lg-12
+                h1.page-header
+                    | Page Heading
+                    small Secondary Text
+        // /.row
+        // Projects Row
+        .row
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+        // /.row
+        // Projects Row
+        .row
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+        // /.row
+        // Projects Row
+        .row
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+        // /.row
         hr
+        // Pagination
+        .row.text-center
+            .col-lg-12
+                ul.pagination
+                    li
+                        a(href='#') «
+                    li.active
+                        a(href='#') 1
+                    li
+                        a(href='#') 2
+                    li
+                        a(href='#') 3
+                    li
+                        a(href='#') 4
+                    li
+                        a(href='#') 5
+                    li
+                        a(href='#') »
+        // /.row
+        hr
+        // Footer
         footer
-            p &copy; Company 2014
-    // /container
+            .row
+                .col-lg-12
+                    p Copyright © Your Website 2014
+            // /.row
+    // /.container
+    // jQuery
+    script(src='js/jquery.js')
+    // Bootstrap Core JavaScript
+    script(src='js/bootstrap.min.js')
+
