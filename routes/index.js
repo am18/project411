@@ -3,6 +3,7 @@ var router = express.Router();
 var configAuth = require('../config/auth');
 var Beer = require('../models/beer');
 var Search = require('../models/search');
+var Favorite = require('../models/favorite');
 
 //var mongoose = require('mongoose');
 
@@ -30,7 +31,7 @@ function search(input) {
         if (search){
             // get all beers with search.term
             console.log('search mongo database');
-            Beer.find({'name': new RegExp(input+'+', "i")}, function(err, beers){
+            Beer.find({ name: new RegExp(input+'+', "i")}, function(err, beers){
                 if (err) {
                     handleError(err);
                 }
@@ -81,7 +82,6 @@ function search(input) {
 
 function addBeersToDatabase(beerObjects) {
     for(var i = 0; i < beerObjects.length; i++) {
-        //var currentBeer = beerObjects[i]; dont need this now
         (function (currentBeer) {
             Beer.findOne({ beerId: currentBeer.beerId},
                 function(err, beer) {
@@ -102,7 +102,7 @@ function addBeersToDatabase(beerObjects) {
                         // beer is already in database
                     }
                     else {
-                        console.log("ERROR: " + err);
+                        console.log('ERROR: ' + err);
                     }
                 }
             );
@@ -110,10 +110,34 @@ function addBeersToDatabase(beerObjects) {
     }
 }
 
+function addNewFavorite(req) {
+    var beerIdTemp = 'FoPVhW';
+    Favorite.findOne({ userId: req.user.userId, beerId: beerIdTemp}, function(err, fav){
+        if (!err && !fav) {
+            var newFav = new Favorite();
+            newFav.userId = req.user.userId;
+            newFav.beerId = beerIdTemp;
+
+            newFav.save(function(err) {
+                if (err) {
+                    throw err;
+                }
+            });
+        }
+        else if (!err) {
+            // favorite is already in database
+        }
+        else {
+            console.log('ERROR: ' + err);
+        }
+    });
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     if (typeof req.user != 'undefined') {
         console.log(req.user.userId);
+        addNewFavorite(req);
     }
     res.render('index', { title: 'BeerBuddy' });
 });
