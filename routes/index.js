@@ -35,7 +35,7 @@ function search(input) {
                 if (err) {
                     handleError(err);
                 }
-                if (beers) {
+                else if (beers) {
                     for (i = 0; i < beers.length; i++) {
                         beerObjects.push(beers[i]);
                     }
