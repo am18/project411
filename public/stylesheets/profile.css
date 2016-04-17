@@ -3,7 +3,7 @@
 /* @group resets and elements */
 * { margin-left: 0; padding: 0; }
 
-html { height: 101%;
+html { height: 100%;
     font-family: “Helvetica Neue”, Arial, Helvetica, sans-serif;
     background: #fff;
 }
@@ -11,7 +11,7 @@ html { height: 101%;
 body {
     align = center;
     font-size: 100%;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
     line-height: 10%;
 }
 

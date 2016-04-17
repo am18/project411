@@ -18,16 +18,17 @@ body {
 }
 
 input[type=text] {
-  margin-top: 7em;
+  margin-top: 72px;
   height: 42px;
   width: 355px;
   box-sizing: border-box;
+  font-size: 12px;
 
 
 }
 input[type=submit] {
   height: 42px;
-  width: 3em;
+  width: 26px;
   background-color: grey;
   color: white;
   border: none;
@@ -52,8 +53,8 @@ input[type=submit] {
 
 .fa.fa-facebook-official{
   float: left;
-  padding-top: 3px;f
-  padding-right: 2px;
+  padding-top: 3px;
+  margin-right: 5px;
 }
 .btn.btn-primary{font-size: 12px;}
 
@@ -71,10 +72,11 @@ a {
   color: white;
   background-color: #222222;
   border: none;
-  padding-right: 1em;
-  padding-left: 1em;
-  margin-left: 0.2em;
-  margin-right: 0.2em;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-size: 12px;
 }
 
 .navbuttons:hover{
