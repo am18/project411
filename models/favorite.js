@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 var favoriteSchema = mongoose.Schema ({
-    beerId: String,
-    userId: String
+    userId: String,
+    beerId: String
 });
 
 module.exports = mongoose.model('Favorite', favoriteSchema);
