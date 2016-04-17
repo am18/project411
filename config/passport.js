@@ -18,7 +18,7 @@ module.exports = function (passport) {
             clientID: configAuth.facebookAuth.clientID,
             clientSecret: configAuth.facebookAuth.clientSecret,
             callbackURL: configAuth.facebookAuth.callbackURL,
-            profileFields: ['id', 'name', 'emails']
+            profileFields: ['id', 'name', 'emails', 'photos', 'friends']
         },
         function(accessToken, refreshToken, profile, done) {
             process.nextTick(function() {
@@ -35,6 +35,7 @@ module.exports = function (passport) {
                         newUser.token = accessToken;
                         newUser.firstName = profile.name.givenName;
                         newUser.lastName = profile.name.familyName;
+                        newUser.photo = profile.photos[0].value;
                         if (typeof profile.emails != 'undefined') {
                             newUser.email = profile.emails[0].value;
                         }
