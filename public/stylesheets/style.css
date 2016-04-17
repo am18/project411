@@ -69,8 +69,11 @@ a {
 
 .navbuttons{
   color: white;
-  background-color: black;
+  background-color: #222222;
   border: none;
+  padding-right: 1em;
+  padding-left: 1em;
+  margin: 1em;
 }
 
 .navbuttons:hover{
