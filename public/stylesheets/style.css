@@ -52,7 +52,7 @@ input[type=submit] {
 
 .fa.fa-facebook-official{
   float: left;
-  padding-top: 3px;
+  padding-top: 3px;f
   padding-right: 2px;
 }
 .btn.btn-primary{font-size: 12px;}
@@ -67,7 +67,11 @@ h1 {text-align: center;}
 a {
   color: #00B7FF; }
 
-
+#userprof{
+  color: white;
+  font-weight: bold;
+  padding-left: 2em;
+}
 
 /*!
  * Start Bootstrap - 4 Col Portfolio HTML Template (http://startbootstrap.com)
