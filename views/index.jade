@@ -14,15 +14,13 @@ block content
                     a(href='http://localhost:3000')
                         img.navicon(src='../images/Icon_BeerBuddy.png')
             .navbar-collapse.collapse
-                form.navbar-form.navbar-right(role='form')
+                form.form-inline.navbar-form.navbar-right(role='form')
                         a.btn.btn-primary(href='/auth/facebook') Log in with Facebook
                             i.fa.fa-facebook-official
-                        .form-inline
-                        a(href = '#')
-                             p  Friends
-                        a(href = '#')
-                            p User Profile
-
+                    a(href = '#')
+                        p  Friends
+                    a(href = '#')
+                        p User Profile
             // /.navbar-collapse
     // Main jumbotron for a primary marketing message or call to action
     .jumbotron.jumbotron-fluid
