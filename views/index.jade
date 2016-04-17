@@ -30,9 +30,23 @@ block content
             .col-md-3.portfolio-item
                 a(href='#')
                     .product-image.text-center
-                        img.img-responsive(src='http://placehold.it/750x450', alt='')
+                        img.img-responsive(src='http://placehold.it/750x450', alt='', data-toggle='modal', data-target='#myModal')
+                        #myModal.modal.fade(role='dialog')
+                            .modal-dialog
+                                // Modal content
+                                .modal-content
+                                    .modal-header
+                                        button.close(type='button', data-dismiss='modal') ×
+                                        h4.modal-title Modal Header
+                                    .modal-body
+                                        p Some text in the modal.
+                                    .modal-footer
+                                        button.btn.btn-default(type='button', data-dismiss='modal') Close
+
+
                     .product-meta
                         p.text-center beer name here
+
             .col-md-3.portfolio-item
                 a(href='#')
                     img.img-responsive(src='http://placehold.it/750x450', alt='')
