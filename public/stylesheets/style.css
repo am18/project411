@@ -73,6 +73,7 @@ a {
   border: none;
   padding-right: 1em;
   padding-left: 1em;
+  margin: 1em;
 }
 
 .navbuttons:hover{
