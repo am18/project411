@@ -67,10 +67,11 @@ h1 {text-align: center;}
 a {
   color: #00B7FF; }
 
-#userprof{
+.navbuttons{
   color: white;
   font-weight: bold;
-  padding-left: 2em;
+  background-color: black;
+
 }
 
 /*!
