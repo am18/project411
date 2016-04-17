@@ -9,6 +9,7 @@ html { height: 101%;
 }
 
 body {
+    align = center;
     font-size: 100%;
     font-family: Helvetica, Arial, sans-serif;
     line-height: 10%;
