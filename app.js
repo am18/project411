@@ -76,7 +76,6 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
 require('./config/passport')(passport);
 
 module.exports = app;
