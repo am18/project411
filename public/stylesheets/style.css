@@ -18,16 +18,17 @@ body {
 }
 
 input[type=text] {
-  margin-top: 7em;
+  margin-top: 72px;
   height: 42px;
   width: 355px;
   box-sizing: border-box;
+  font-size: 12px;
 
 
 }
 input[type=submit] {
   height: 42px;
-  width: 3em;
+  width: 26px;
   background-color: grey;
   color: white;
   border: none;
@@ -53,7 +54,7 @@ input[type=submit] {
 .fa.fa-facebook-official{
   float: left;
   padding-top: 3px;
-  padding-right: 2px;
+  margin-right: 5px;
 }
 .btn.btn-primary{font-size: 12px;}
 
@@ -67,7 +68,20 @@ h1 {text-align: center;}
 a {
   color: #00B7FF; }
 
+.navbuttons{
+  color: white;
+  background-color: #222222;
+  border: none;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-size: 12px;
+}
 
+.navbuttons:hover{
+  color: #589fc6;
+}
 
 /*!
  * Start Bootstrap - 4 Col Portfolio HTML Template (http://startbootstrap.com)
@@ -78,6 +92,11 @@ a {
 body {
   padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
+
+
+
+
+
 
 .portfolio-item {
   margin-bottom: 25px;
