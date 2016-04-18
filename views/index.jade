@@ -1,23 +1,6 @@
 extends layout
 
 block content
-    .navbar.navbar-inverse.navbar-fixed-top(role='navigation')  
-        .container
-            .navbar-header
-                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-                    span.sr-only Toggle navigation
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-                a.navbar-brand(href='#')
-                    //img(alt='Brand', src='../stylesheets/Icon_BeerBuddy.png')
-                    img.navicon(src='../images/Icon_BeerBuddy.png')
-            .navbar-collapse.collapse
-                form.navbar-form.navbar-right(role='form')
-                        a.btn.btn-primary(href='/auth/facebook') Log in with Facebook
-                            i.fa.fa-facebook-official
-
-            // /.navbar-collapse
     // Main jumbotron for a primary marketing message or call to action
     .jumbotron.jumbotron-fluid
         .container
@@ -35,57 +18,26 @@ block content
 
 
     .container
-        // Page Heading
-        .row
-            .col-lg-12
-                h1.page-header
-                    | Page Heading
-                    small Secondary Text
-        // /.row
-        // Projects Row
-        .row
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-        // /.row
-        // Projects Row
-        .row
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-        // /.row
-        // Projects Row
-        .row
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+        div(ng-controller='ctrl1')
+            div(class='row')
+                button(type='button', class='btn btn-default btn-lg', ng-click='get()') Get
+                br
+                br
+            div(class='row')
+                div(class='col-xs-6 col-md-3', ng-repeat='beer in data')
+                    //div(style = 'border:5px solid silver; border-radius:10px')
+                    div
+                        br
+                        img(ng-show='beer.image != undefined', src='{{beer.image}}', alt='', height="200", width="200")
+                        img(ng-show='beer.image == undefined', src='/images/no_image.png', alt='', height="200", width="200")
+                        br
+                        br
+                        h3 {{beer.name}}
+                        div Beer ID: {{beer.beerId}}
+                        br
+                        br
+                    br
+                    br
         // /.row
         hr
         // Pagination
@@ -113,10 +65,6 @@ block content
             .row
                 .col-lg-12
                     p Copyright © Your Website 2014
-            // /.row
-    // /.container
-    // jQuery
-    script(src='js/jquery.js')
-    // Bootstrap Core JavaScript
-    script(src='js/bootstrap.min.js')
+
+
 
