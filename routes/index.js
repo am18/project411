@@ -10,7 +10,6 @@ var Favorite = require('../models/favorite');
 var request = require('request');
 var obj;
 var data;
-var beerObjects = [];
 
 var results= [{ _id: 571431,
   beerId: 'KJ3Cky',
@@ -152,8 +151,8 @@ var results= [{ _id: 571431,
   description: undefined,
   abv: '6.8' }];
 
-function search(input) {
-
+function search(input, callback) {
+    var beerObjects = [];
     var options = { method: 'GET',
         url: 'http://api.brewerydb.com/v2/search/',
         qs:
@@ -183,6 +182,7 @@ function search(input) {
                 else {
                     console.log('no beers found');
                 }
+                callback(beerObjects);
             });
         }
         else {
@@ -210,12 +210,11 @@ function search(input) {
                     if (data[i].hasOwnProperty('labels')) {
                         newBeer.image = data[i]['labels']['large'];
                     }
-
                     beerObjects.push(newBeer);
                 }
+                callback(beerObjects);
                 addBeersToDatabase(beerObjects);
             });
-
         }
     });
 }
@@ -274,9 +273,9 @@ function addNewFavorite(req) {
 }
 
 router.get('/get', function(req, res) {
-
-    res.json(results);
-
+    search("miller", function(beers) {
+        res.json(beers);
+    });
 });
 
 /* GET home page. */
