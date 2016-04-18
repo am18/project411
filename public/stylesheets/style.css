@@ -4,7 +4,7 @@ body {
 
 .jumbotron {
   position: relative;
-  background: url(../images/Img1.png) no-repeat center center;
+  background: url(../images/Img1.png) no-repeat center top;
   min-height: 449px;
   padding-bottom: 20px;
   width: 100%;
