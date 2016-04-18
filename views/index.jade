@@ -30,65 +30,26 @@ block content
 
 
     .container
-        // Page Heading
-        .row
-            .col-lg-12
-                h1.page-header
-                    | Page Heading
-                    small Secondary Text
-                    div(ng-controller='ctrl1')
-                        button(ng-click='get()') Get
-                        div(ng-repeat="beer in data")
-                            div
-                                img(ng-src='{{beer.image}}')
-                                | {{beer.name}}
-                                | {{beer.beerId}}
-
-        // /.row
-        // Projects Row
-        .row
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-        // /.row
-        // Projects Row
-        .row
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-        // /.row
-        // Projects Row
-        .row
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
-            .col-md-3.portfolio-item
-                a(href='#')
-                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+        div(ng-controller='ctrl1')
+            div(class='row')
+                button(type='button', class='btn btn-default btn-lg', ng-click='get()') Get
+                br
+                br
+            div(class='row')
+                div(class='col-xs-6 col-md-3', ng-repeat='beer in data')
+                    //div(style = 'border:5px solid silver; border-radius:10px')
+                    div
+                        br
+                        img(ng-show='beer.image != undefined', src='{{beer.image}}', alt='', height="200", width="200")
+                        img(ng-show='beer.image == undefined', src='/images/no_image.png', alt='', height="200", width="200")
+                        br
+                        br
+                        h3 {{beer.name}} 
+                        div Beer ID: {{beer.beerId}}
+                        br
+                        br
+                    br
+                    br
         // /.row
         hr
         // Pagination
