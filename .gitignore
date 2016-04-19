@@ -1,2 +1,5 @@
 auth.js
 node_modules/
+.xml
+.idea/
+.idea/workspace.xml
