@@ -25,15 +25,17 @@ input[type=text] {
   font-size: 12px;
 
 
+
 }
 input[type=submit] {
   height: 42px;
-  width: 26px;
+  width: 40px;
   background-color: grey;
   color: white;
   border: none;
-  padding-top: 5px;
   margin: 3px;
+
+
 }
 .logo{
   max-height: 100px;
