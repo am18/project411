@@ -20,7 +20,7 @@ block content
     .container
         div(ng-controller='ctrl1')
             div(class='row')
-                button(type='button', class='btn btn-default btn-lg', ng-click='get()') Get
+                input(type="text", name="input", placeholder= "Search for a beer...", ng-model='input')
                 br
                 br
             div(class='row')
@@ -43,22 +43,73 @@ block content
         // Pagination
         .row.text-center
             .col-lg-12
-                ul.pagination
-                    li
-                        a(href='#') «
-                    li.active
-                        a(href='#') 1
-                    li
-                        a(href='#') 2
-                    li
-                        a(href='#') 3
-                    li
-                        a(href='#') 4
-                    li
-                        a(href='#') 5
-                    li
-                        a(href='#') »
+                h1.page-header
+                    | Search Results
+
         // /.row
+        // Projects Row
+        .row
+            .col-md-3.portfolio-item
+                a(href='#')
+                    .product-image.text-center
+                        img.img-responsive(src='https://s3.amazonaws.com/brewerydbapi/beer/voS2xG/upload_sZpYvj-large.png', alt='', data-toggle='modal', data-target='#myModal')
+                        #myModal.modal.fade(role='dialog')
+                            .modal-dialog
+                                // Modal content
+                                .modal-content
+                                    .modal-header
+                                        button.close(type='button', data-dismiss='modal') ×
+                                        h4.modal-title Modal Header
+                                    .modal-body
+                                        p Some text in the modal.
+                                    .modal-footer
+                                        button.btn.btn-default(type='button', data-dismiss='modal') Close
+
+
+                .product-meta
+                    p.text-left beer name here
+
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+        // /.row
+        // Projects Row
+        .row
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+        // /.row
+        // Projects Row
+        .row
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+            .col-md-3.portfolio-item
+                a(href='#')
+                    img.img-responsive(src='http://placehold.it/750x450', alt='')
+        // /.row
+
         hr
         // Footer
         footer
