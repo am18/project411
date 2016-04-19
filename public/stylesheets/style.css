@@ -95,7 +95,7 @@ body {
 
 
 
-
+.container .row .col-md-3.portfolio-item .img-responsive {min-height: 200px; max-width: 200px;}
 
 
 .portfolio-item {
