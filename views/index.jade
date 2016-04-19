@@ -7,9 +7,12 @@ block content
             .row
                 .col-lg-12
                     img.logo(src='../images/logo_BeerBuddy.png')
-                    form.search(name="search", method="post")
-                        input(type="text", name="input", placeholder= "Search for a beer...")
-                        input(type='submit', value='Go')
+
+
+                        if locals.beers
+                             ul
+                                each beer in beers
+                                    li= beer.name
 
                         if locals.beers
                              ul
@@ -20,7 +23,7 @@ block content
     .container
         div(ng-controller='ctrl1')
             div(class='row')
-                button(type='button', class='btn btn-default btn-lg', ng-click='get()') Get
+                input(type="text", name="input", placeholder= "Search for a beer...", ng-model='input')
                 br
                 br
             div(class='row')
