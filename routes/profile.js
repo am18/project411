@@ -55,7 +55,7 @@ router.get('/', function(req, res, next) {
         getFavoriteBeerIds(req, function(beerIds) {
             getFavorites(beerIds, function(beers) {
                 console.log(beers);
-                res.render('profile');
+                // res.render('profile');
             });
         });
     }
@@ -64,6 +64,7 @@ router.get('/', function(req, res, next) {
         // you must login to access friends page
         res.redirect('back');
     }
+    res.render('profile');
 });
 
 module.exports = router;
