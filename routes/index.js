@@ -11,6 +11,7 @@ var request = require('request');
 var obj;
 var data;
 
+
 function search(input, callback) {
     var beerObjects = [];
     var options = { method: 'GET',
