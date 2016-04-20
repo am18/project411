@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 
+var User = require('../models/user');
+
 function getFriendIds(req, callback) {
     var friendIds = [];
 
@@ -24,8 +26,33 @@ function getFriendIds(req, callback) {
     });
 }
 
-function getFriends(friendIds) {
+function getFriends(friendIds, callback) {
     // use friendIds to query mongoose for user objects
+    var friends = [];
+    var count = friendIds.length;
+    for(var i = 0; i < friendIds.length; i++) {
+        (function (id) {
+            User.findOne({ userId: id}, function(err, user) {
+                    if (err) {
+                        handleError(err);
+                    }
+                    else if(user) {
+                        count--;
+                        friends.push(user);
+                        console.log(friends);
+                        // doesn't work if all users are not in database
+                        if (count <= 0) {
+                            callback(friends);
+                        }
+                    }
+                    else {
+                        // no friends found
+                    }
+                }
+            );
+        })(friendIds[i]);
+    }
+
 }
 
 /* GET users listing. */
@@ -33,7 +60,9 @@ router.get('/', function(req, res, next) {
     if (typeof req.user != 'undefined') {
         getFriendIds(req, function(friendIds) {
             console.log(friendIds);
-            getFriends(friendIds);
+            getFriends(friendIds, function(friends){
+                console.log(friends);
+            });
         });
     }
     else {
