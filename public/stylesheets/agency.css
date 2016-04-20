@@ -500,3 +500,20 @@ img::selection{background:0 0}
 img::-moz-selection{background:0 0}
 
 body{webkit-tap-highlight-color:#fed136}
+
+.fa.fa-facebook-official{
+	float: left;
+	padding-top: 3px;
+	margin-right: 5px;
+}
+
+#facebook {
+	background: #3B5998;
+	border-color: #3B5998;
+}
+
+#facebook:hover,
+#facebook:focus,
+#facebook:active {
+	color: white;
+}
