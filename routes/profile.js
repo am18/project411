@@ -53,6 +53,7 @@ function getFavorites(beerIds, callback) {
 router.get('/', function(req, res, next) {
     if (typeof req.user != 'undefined') {
         getFavoriteBeerIds(req, function(beerIds) {
+            console.log(beerIds);
             getFavorites(beerIds, function(beers) {
                 console.log(beers);
                 // res.render('profile');
