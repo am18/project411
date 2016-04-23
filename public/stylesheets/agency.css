@@ -469,7 +469,50 @@ ul.social-buttons li a:active{background-color:#fed136}
 .btn.active,
 .btn:active:focus{outline:0}
 
-.portfolio-modal .modal-content{border-radius:0;background-clip:border-box;-webkit-box-shadow:none;box-shadow:none;border:0;min-height:100%;padding:100px 0;text-align:center}
+.login-modal .vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+}
+
+.login-modal .vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.login-modal .modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+}
+
+.login-modal .modal-content{border-radius:0;background-clip:border-box;-webkit-box-shadow:none;box-shadow:none;text-align:center}
+
+.login-modal .modal-content h2{margin-bottom:15px;font-size:3em}
+
+.login-modal .modal-content p{margin-bottom:30px}
+
+.login-modal .modal-content p.item-intro{margin:20px 0 30px;font-family:"Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;font-style:italic;font-size:16px}
+
+.login-modal .modal-content ul.list-inline{margin-bottom:30px;margin-top:0}
+
+.login-modal .modal-content img{margin-bottom:30px}
+
+
+.login-modal .close-modal{position:absolute;width:75px;height:75px;background-color:transparent;top:25px;right:25px;cursor:pointer}
+
+.login-modal .close-modal:hover{opacity:.3}
+
+.login-modal .close-modal .lr{height:75px;width:1px;margin-left:35px;background-color:#222;transform:rotate(45deg);-ms-transform:rotate(45deg);-webkit-transform:rotate(45deg);z-index:1051}
+
+.login-modal .close-modal .lr .rl{height:75px;width:1px;background-color:#222;transform:rotate(90deg);-ms-transform:rotate(90deg);-webkit-transform:rotate(90deg);z-index:1052}
+
+.login-modal .modal-backdrop{opacity:0;display:none}
+
+.portfolio-modal .modal-content{border-radius:0;background-clip:border-box;-webkit-box-shadow:none;box-shadow:none;border:0;min-height:50%;padding:100px 0;text-align:center}
 
 .portfolio-modal .modal-content h2{margin-bottom:15px;font-size:3em}
 

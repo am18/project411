@@ -41,13 +41,13 @@ html(ng-app='app1')
             li
               a.page-scroll(href='#search') Search
             li
-              a.page-scroll(href='#portfolio') Portfolio
-            li
-              a.page-scroll(href='#about') About
+              a.page-scroll(href='#portfolio') Favorites
             li
               a.page-scroll(href='#team') Team
             li
               a.page-scroll(href='#contact') Contact
+            li
+              a.portfolio-link(href='#loginModal', data-toggle='modal') Login
         // /.navbar-collapse
       // /.container-fluid
     // Header
@@ -101,7 +101,8 @@ html(ng-app='app1')
               .portfolio-caption
                 h4 {{beer.name}} 
                 p.text-muted Beer ID: {{beer.beerId}}
-    
+    //Portfolio Section
+
     section#portfolio.bg-light-gray
       .container
         .row
@@ -347,6 +348,30 @@ html(ng-app='app1')
                 a(href='#') Terms of Use
     // Portfolio Modals
     // Use the modals below to showcase details about your portfolio projects!
+
+    // Login Modal
+    #loginModal.login-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .vertical-alignment-helper
+        .vertical-align-center
+          .modal-content
+            .close-modal(data-dismiss='modal')
+              .lr
+                .rl
+            .container
+              .row
+                .col-lg-8.col-lg-offset-2
+                  .modal-body
+                    h2 Project Heading
+                   
+                    p.item-intro.text-muted Login with Facebook
+
+                    a.btn.btn-primary(href='/auth/facebook') Log in with Facebook
+                            i.fa.fa-facebook-official
+                    br
+                    br
+                    button.btn.btn-primary(type='button', data-dismiss='modal')
+                      i.fa.fa-times
+                      |  Close
     // Portfolio Modal 1
     #portfolioModal1.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content
@@ -378,28 +403,29 @@ html(ng-app='app1')
                   i.fa.fa-times
                   |  Close Project
     // Portfolio Modal 2
-    #portfolioModal2.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
-      .modal-content
-        .close-modal(data-dismiss='modal')
-          .lr
-            .rl
-        .container
-          .row
-            .col-lg-8.col-lg-offset-2
-              .modal-body
-                h2 Project Heading
-                p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
-                img.img-responsive.img-centered(src='img/portfolio/startup-framework-preview.png', alt='')
-                p
-                  a(href='http://designmodo.com/startup/?u=787') Startup Framework
-                  |  is a website builder for professionals. Startup Framework contains components and complex blocks (PSD+HTML Bootstrap themes and templates) which can easily be integrated into almost any design. All of these components are made in the same style, and can easily be integrated into projects, allowing you to create hundreds of solutions for your future projects.
-                p
-                  | You can preview Startup Framework 
-                  a(href='http://designmodo.com/startup/?u=787') here
-                  | .
-                button.btn.btn-primary(type='button', data-dismiss='modal')
-                  i.fa.fa-times
-                  |  Close Project
+    #portfolioModal2.login-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .vertical-alignment-helper
+        .vertical-align-center
+          .modal-content
+            .close-modal(data-dismiss='modal')
+              .lr
+                .rl
+            .container
+              .row
+                .col-lg-8.col-lg-offset-2
+                  .modal-body
+                    h2 Project Heading
+                    p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
+                    p
+                      a(href='http://designmodo.com/startup/?u=787') Startup Framework
+                      |  is a website builder for professionals. Startup Framework contains components and complex blocks (PSD+HTML Bootstrap themes and templates) which can easily be integrated into almost any design. All of these components are made in the same style, and can easily be integrated into projects, allowing you to create hundreds of solutions for your future projects.
+                    p
+                      | You can preview Startup Framework 
+                      a(href='http://designmodo.com/startup/?u=787') here
+                      | .
+                    button.btn.btn-primary(type='button', data-dismiss='modal')
+                      i.fa.fa-times
+                      |  Close Project
     // Portfolio Modal 3
     #portfolioModal3.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content
