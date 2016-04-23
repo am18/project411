@@ -114,8 +114,7 @@ html(ng-app='app1')
       .container
         .row
           .col-lg-12.text-center
-            h2.section-heading Portfolio
-            h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
+            h2.section-heading Friends
         .row
           .col-md-4.col-sm-6.portfolio-item
             a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
@@ -417,20 +416,32 @@ html(ng-app='app1')
             .col-lg-8.col-lg-offset-2
               .modal-body
                 // Project Details Go Here
-                h2 Project Name
-                p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
-                img.img-responsive.img-centered(src='img/portfolio/golden-preview.png', alt='')
-                p
-                  | Start Bootstrap's Agency theme is based on Golden, a free PSD website template built by 
-                  a(href='https://www.behance.net/MathavanJaya') Mathavan Jaya
-                  | . Golden is a modern and clean one page web template that was made exclusively for Best PSD Freebies. This template has a great portfolio, timeline, and meet your team sections that can be easily modified to fit your needs.
-                p
-                  | You can download the PSD template in this portfolio sample item at 
-                  a(href='http://freebiesxpress.com/gallery/golden-free-one-page-web-template/') FreebiesXpress.com
-                  | .
-                button.btn.btn-primary(type='button', data-dismiss='modal')
-                  i.fa.fa-times
-                  |  Close Project
+                img.profile-pic(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                h2 Your Name
+                h3 Favorite Beers
+                .row
+                  div(class='col-md-3 col-sm-6 portfolio-item')
+                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                    .portfolio-caption
+                      h4 miller
+                      p.text-muted Beer ID: {{beer.beerId}}
+                  div(class='col-md-3 col-sm-6 portfolio-item')
+                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                    .portfolio-caption
+                      h4 Corona
+                      p.text-muted Beer ID: {{beer.beerId}}
+                  div(class='col-md-3 col-sm-6 portfolio-item')
+                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                    .portfolio-caption
+                      h4 IPA
+                      p.text-muted Beer ID: {{beer.beerId}}
+
     // Portfolio Modal 5
     #portfolioModal5.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content
