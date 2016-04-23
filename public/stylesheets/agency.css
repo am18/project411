@@ -517,3 +517,5 @@ body{webkit-tap-highlight-color:#fed136}
 #facebook:active {
 	color: white;
 }
+
+.profile-pic {margin: auto; max-height: 200px; max-width: 200px;}
