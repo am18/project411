@@ -41,16 +41,21 @@ html(ng-app='app1')
             li
               a.page-scroll(href='#search') Search
             li
-              a.page-scroll(href='#portfolio') Portfolio
+              a.page-scroll(href='#portfolio') Friends
             li
-              a.page-scroll(href='#about') About
+              a.portfolio-link(href='#portfolioModal4', data-toggle='modal') Profile
             li
               a.page-scroll(href='#team') Team
             li
               a.page-scroll(href='#contact') Contact
-            li
-              a.btn.btn-primary#facebook(href='/auth/facebook') Log in with Facebook
-                i.fa.fa-facebook-official
+            if locals.loggedIn
+              li
+                a.btn.btn-primary#facebook(href='/auth/facebook/logout') Log out
+                  i.fa.fa-facebook-official
+            else
+              li
+                a.btn.btn-primary#facebook(href='/auth/facebook') Log in with Facebook
+                  i.fa.fa-facebook-official
         // /.navbar-collapse
       // /.container-fluid
     // Header
@@ -109,8 +114,10 @@ html(ng-app='app1')
       .container
         .row
           .col-lg-12.text-center
-            h2.section-heading Portfolio
-            h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
+            h2.section-heading Friends
+            h3.section-subheading.text-muted Discover what beers your friends like.
+
+      div(ng-controller='friends')
         .row
           .col-md-4.col-sm-6.portfolio-item
             a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
@@ -167,76 +174,21 @@ html(ng-app='app1')
               h4 Dreams
               p.text-muted Website Design
     // About Section
-    section#about
-      .container
-        .row
-          .col-lg-12.text-center
-            h2.section-heading About
-            h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
-        .row
-          .col-lg-12
-            ul.timeline
-              li
-                .timeline-image
-                  img.img-circle.img-responsive(src='img/about/1.jpg', alt='')
-                .timeline-panel
-                  .timeline-heading
-                    h4 2009-2011
-                    h4.subheading Our Humble Beginnings
-                  .timeline-body
-                    p.text-muted
-                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
-              li.timeline-inverted
-                .timeline-image
-                  img.img-circle.img-responsive(src='img/about/2.jpg', alt='')
-                .timeline-panel
-                  .timeline-heading
-                    h4 March 2011
-                    h4.subheading An Agency is Born
-                  .timeline-body
-                    p.text-muted
-                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
-              li
-                .timeline-image
-                  img.img-circle.img-responsive(src='img/about/3.jpg', alt='')
-                .timeline-panel
-                  .timeline-heading
-                    h4 December 2012
-                    h4.subheading Transition to Full Service
-                  .timeline-body
-                    p.text-muted
-                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
-              li.timeline-inverted
-                .timeline-image
-                  img.img-circle.img-responsive(src='img/about/4.jpg', alt='')
-                .timeline-panel
-                  .timeline-heading
-                    h4 July 2014
-                    h4.subheading Phase Two Expansion
-                  .timeline-body
-                    p.text-muted
-                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
-              li.timeline-inverted
-                .timeline-image
-                  h4
-                    | Be Part
-                    br
-                    | Of Our
-                    br
-                    | Story!
+    //Deleted
+
     // Team Section
     section#team.bg-light-gray
       .container
         .row
           .col-lg-12.text-center
-            h2.section-heading Our Amazing Team
-            h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
+            h1.section-heading Our Amazing Team
+            h3.section-subheading.text-muted
         .row
           .col-sm-4
             .team-member
-              img.img-responsive.img-circle(src='img/team/1.jpg', alt='')
-              h4 Kay Garland
-              p.text-muted Lead Designer
+              img.img-responsive.img-circle(src='img/team/Ayusha.jpg', width='70%', height='70%', alt='')
+              h4 Ayusha Mittal
+              p.
               ul.list-inline.social-buttons
                 li
                   a(href='#')
@@ -249,9 +201,9 @@ html(ng-app='app1')
                     i.fa.fa-linkedin
           .col-sm-4
             .team-member
-              img.img-responsive.img-circle(src='img/team/2.jpg', alt='')
-              h4 Larry Parker
-              p.text-muted Lead Marketer
+              img.img-responsive.img-circle(src='img/team/Iris.jpg',width='70%', height='70%', alt='')
+              h4 Iris Beharaj
+              p.
               ul.list-inline.social-buttons
                 li
                   a(href='#')
@@ -264,9 +216,9 @@ html(ng-app='app1')
                     i.fa.fa-linkedin
           .col-sm-4
             .team-member
-              img.img-responsive.img-circle(src='img/team/3.jpg', alt='')
-              h4 Diana Pertersen
-              p.text-muted Lead Developer
+              img.img-responsive.img-circle(src='img/team/Joseph.jpg',width='70%', height='70%', alt='')
+              h4 Joseph Tierney
+              p.
               ul.list-inline.social-buttons
                 li
                   a(href='#')
@@ -278,25 +230,37 @@ html(ng-app='app1')
                   a(href='#')
                     i.fa.fa-linkedin
         .row
-          .col-lg-8.col-lg-offset-2.text-center
-            p.large.text-muted
-              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.
-    // Clients Aside
-    aside.clients
-      .container
-        .row
-          .col-md-3.col-sm-6
-            a(href='#')
-              img.img-responsive.img-centered(src='img/logos/envato.jpg', alt='')
-          .col-md-3.col-sm-6
-            a(href='#')
-              img.img-responsive.img-centered(src='img/logos/designmodo.jpg', alt='')
-          .col-md-3.col-sm-6
-            a(href='#')
-              img.img-responsive.img-centered(src='img/logos/themeforest.jpg', alt='')
-          .col-md-3.col-sm-6
-            a(href='#')
-              img.img-responsive.img-centered(src='img/logos/creative-market.jpg', alt='')
+          .col-sm-6
+            .team-member
+              img.img-responsive.img-circle(src='img/team/Sanam.jpg',width='50%', height='50%', alt='')
+              h4 Sanam Patel
+              p.
+              ul.list-inline.social-buttons
+                li
+                  a(href='#')
+                    i.fa.fa-twitter
+                li
+                  a(href='#')
+                    i.fa.fa-facebook
+                li
+                  a(href='#')
+                    i.fa.fa-linkedin
+          .col-sm-6
+            .team-member
+              img.img-responsive.img-circle(src='img/team/Yizhi.jpg', width='50%', height='50%', alt='')
+              h4 Yizhi Huang
+              p.
+              ul.list-inline.social-buttons
+                li
+                  a(href='#')
+                    i.fa.fa-twitter
+                li
+                  a(href='#')
+                    i.fa.fa-facebook
+                li
+                  a(href='#')
+                    i.fa.fa-linkedin
+
     // Contact Section
     section#contact
       .container
@@ -439,20 +403,32 @@ html(ng-app='app1')
             .col-lg-8.col-lg-offset-2
               .modal-body
                 // Project Details Go Here
-                h2 Project Name
-                p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
-                img.img-responsive.img-centered(src='img/portfolio/golden-preview.png', alt='')
-                p
-                  | Start Bootstrap's Agency theme is based on Golden, a free PSD website template built by 
-                  a(href='https://www.behance.net/MathavanJaya') Mathavan Jaya
-                  | . Golden is a modern and clean one page web template that was made exclusively for Best PSD Freebies. This template has a great portfolio, timeline, and meet your team sections that can be easily modified to fit your needs.
-                p
-                  | You can download the PSD template in this portfolio sample item at 
-                  a(href='http://freebiesxpress.com/gallery/golden-free-one-page-web-template/') FreebiesXpress.com
-                  | .
-                button.btn.btn-primary(type='button', data-dismiss='modal')
-                  i.fa.fa-times
-                  |  Close Project
+                img.profile-pic(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                h2 Your Name
+                h3 Favorite Beers
+                .row
+                  div(class='col-md-3 col-sm-6 portfolio-item')
+                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                    .portfolio-caption
+                      h4 miller
+                      p.text-muted Beer ID: {{beer.beerId}}
+                  div(class='col-md-3 col-sm-6 portfolio-item')
+                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                    .portfolio-caption
+                      h4 Corona
+                      p.text-muted Beer ID: {{beer.beerId}}
+                  div(class='col-md-3 col-sm-6 portfolio-item')
+                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                    .portfolio-caption
+                      h4 IPA
+                      p.text-muted Beer ID: {{beer.beerId}}
+
     // Portfolio Modal 5
     #portfolioModal5.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content

@@ -163,13 +163,6 @@ router.get('/get/:input', function(req, res) {
     });
 });
 
-//router.get('/favorite/:beerId', function(req, res) {
-//    console.log(req.params.beerId);
-//    isFavorite(req, req.params.beerId, function(isFav) {
-//       res.send(isFav);
-//    });
-//});
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
     if (typeof req.user != 'undefined') {
@@ -180,6 +173,7 @@ router.get('/', function(req, res, next) {
         });
     }
     //res.render('index', { title: 'BeerBuddy' });
+    res.locals.loggedIn = (req.user) ? true : false;
     res.render('agency', { title: 'BeerBuddy' });
 });
 

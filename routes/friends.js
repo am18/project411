@@ -52,7 +52,6 @@ function getFriends(friendIds, callback) {
             );
         })(friendIds[i]);
     }
-
 }
 
 /* GET users listing. */

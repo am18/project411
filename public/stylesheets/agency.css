@@ -307,6 +307,11 @@ section h3.section-subheading{font-size:16px;font-family:"Droid Serif","Helvetic
 	
 	section {
 		padding:150px 0;
+		padding-bottom: 0px;
+	}
+
+	section#team {
+		padding-top: 80px;
 	}
 }
 
@@ -517,3 +522,5 @@ body{webkit-tap-highlight-color:#fed136}
 #facebook:active {
 	color: white;
 }
+
+.profile-pic {margin: auto; max-height: 200px; max-width: 200px;}
