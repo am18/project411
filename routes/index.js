@@ -137,17 +137,47 @@ function addNewFavorite(req) {
     });
 }
 
+function isFavorite(req, beerId, callback) {
+    var isFav = false;
+    Favorite.findOne({ userId: req.user.userId, beerId: beerId}, function(err, fav){
+        if (!err && !fav) {
+            // this beer is not a favorite
+            isFav = false;
+        }
+        else if (!err) {
+            // this beer is a favorite
+            isFav = true;
+        }
+        else {
+            console.log('ERROR: ' + err);
+        }
+        callback(isFav);
+    });
+}
+
+
+
 router.get('/get/:input', function(req, res) {
     search(req.params.input, function(beers) {
         res.json(beers);
     });
 });
 
+//router.get('/favorite/:beerId', function(req, res) {
+//    console.log(req.params.beerId);
+//    isFavorite(req, req.params.beerId, function(isFav) {
+//       res.send(isFav);
+//    });
+//});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     if (typeof req.user != 'undefined') {
         console.log(req.user.userId);
         addNewFavorite(req);
+        isFavorite(req, 'FoPVhW', function(isFav){
+            console.log(isFav);
+        });
     }
     //res.render('index', { title: 'BeerBuddy' });
     res.render('agency', { title: 'BeerBuddy' });
