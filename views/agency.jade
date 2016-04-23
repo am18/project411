@@ -48,9 +48,14 @@ html(ng-app='app1')
               a.page-scroll(href='#team') Team
             li
               a.page-scroll(href='#contact') Contact
-            li
-              a.btn.btn-primary#facebook(href='/auth/facebook') Log in with Facebook
-                i.fa.fa-facebook-official
+            if locals.loggedIn
+              li
+                a.btn.btn-primary#facebook(href='/auth/facebook/logout') Log out
+                  i.fa.fa-facebook-official
+            else
+              li
+                a.btn.btn-primary#facebook(href='/auth/facebook') Log in with Facebook
+                  i.fa.fa-facebook-official
         // /.navbar-collapse
       // /.container-fluid
     // Header
