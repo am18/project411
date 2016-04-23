@@ -307,6 +307,11 @@ section h3.section-subheading{font-size:16px;font-family:"Droid Serif","Helvetic
 	
 	section {
 		padding:150px 0;
+		padding-bottom: 0px;
+	}
+
+	section#team {
+		padding-top: 80px;
 	}
 }
 
