@@ -23,7 +23,6 @@ module.exports = function (passport) {
         function(accessToken, refreshToken, profile, done) {
             process.nextTick(function() {
                 User.findOne({'userId': profile.id}, function(err, user){
-                    console.log(profile.photos[0].value);
                     if (err) {
                         return done(err);
                     }
