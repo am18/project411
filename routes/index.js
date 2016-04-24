@@ -10,6 +10,7 @@ var Favorite = require('../models/favorite');
 var request = require('request');
 var obj;
 var data;
+var userId;
 
 
 function search(input, callback) {
@@ -137,6 +138,61 @@ function addNewFavorite(req) {
     });
 }
 
+function getFavoriteBeerIds(req, callback) {
+    var beerIds = [];
+    Favorite.find({ userId: req.user.userId}, function(err, favs){
+        if (err) {
+            handleError(err);
+        }
+        else if (favs) {
+            for (i = 0; i < favs.length; i++) {
+                beerIds.push(favs[i]['beerId']);
+            }
+        }
+        else {
+            // no favorites found
+            console.log('no favorites found');
+        }
+        callback(beerIds);
+    });
+}
+
+function getFavorites(beerIds, callback) {
+    var beers = [];
+    var count = beerIds.length;
+    for(var i = 0; i < beerIds.length; i++) {
+        (function (id) {
+            Beer.findOne({ beerId: id}, function(err, beer) {
+                    if (err) {
+                        handleError(err);
+                    }
+                    else if(beer) {
+                        count--;
+                        beers.push(beer);
+                        if (count <= 0) {
+                            callback(beers);
+                        }
+                    }
+                    else {
+                        // no favorite beers found
+                    }
+                }
+            );
+        })(beerIds[i]);
+    }
+}
+
+router.get('/favorites', function(req, res) {
+    console.log('get favorites request');
+    res.json('favorites');
+});
+
+router.post('/favorites', function(req, res) {
+    console.log('post favorites request');
+    console.log(req.body.beerId);
+    res.json('favorites');
+});
+
 router.get('/get/:input', function(req, res) {
     search(req.params.input, function(beers) {
         res.json(beers);
@@ -147,6 +203,7 @@ router.get('/get/:input', function(req, res) {
 router.get('/', function(req, res, next) {
     if (typeof req.user != 'undefined') {
         console.log(req.user.userId);
+        userId = req.user.userId;
         addNewFavorite(req);
     }
     //res.render('index', { title: 'BeerBuddy' });
