@@ -150,76 +150,36 @@ html(ng-app='app1')
               h4 Ayusha Mittal
               p.
               ul.list-inline.social-buttons
-                li
-                  a(href='#')
-                    i.fa.fa-twitter
-                li
-                  a(href='#')
-                    i.fa.fa-facebook
-                li
-                  a(href='#')
-                    i.fa.fa-linkedin
+
           .col-sm-4
             .team-member
               img.img-responsive.img-circle(src='img/team/Iris.jpg',width='70%', height='70%', alt='')
               h4 Iris Beharaj
               p.
               ul.list-inline.social-buttons
-                li
-                  a(href='#')
-                    i.fa.fa-twitter
-                li
-                  a(href='#')
-                    i.fa.fa-facebook
-                li
-                  a(href='#')
-                    i.fa.fa-linkedin
+
           .col-sm-4
             .team-member
               img.img-responsive.img-circle(src='img/team/Joseph.jpg',width='70%', height='70%', alt='')
               h4 Joseph Tierney
               p.
               ul.list-inline.social-buttons
-                li
-                  a(href='#')
-                    i.fa.fa-twitter
-                li
-                  a(href='#')
-                    i.fa.fa-facebook
-                li
-                  a(href='#')
-                    i.fa.fa-linkedin
+
         .row
           .col-sm-6
             .team-member
-              img.img-responsive.img-circle(src='img/team/Sanam.jpg',width='50%', height='50%', alt='')
+              img.img-responsive.img-circle(src='img/team/Sanam.jpg',width='45%', height='45%', alt='')
               h4 Sanam Patel
               p.
               ul.list-inline.social-buttons
-                li
-                  a(href='#')
-                    i.fa.fa-twitter
-                li
-                  a(href='#')
-                    i.fa.fa-facebook
-                li
-                  a(href='#')
-                    i.fa.fa-linkedin
+
           .col-sm-6
             .team-member
-              img.img-responsive.img-circle(src='img/team/Yizhi.jpg', width='50%', height='50%', alt='')
+              img.img-responsive.img-circle(src='img/team/Yizhi.jpg', width='47%', height='47%', alt='')
               h4 Yizhi Huang
               p.
               ul.list-inline.social-buttons
-                li
-                  a(href='#')
-                    i.fa.fa-twitter
-                li
-                  a(href='#')
-                    i.fa.fa-facebook
-                li
-                  a(href='#')
-                    i.fa.fa-linkedin
+
 
     // Contact Section
     section#contact
@@ -227,7 +187,7 @@ html(ng-app='app1')
         .row
           .col-lg-12.text-center
             h2.section-heading Contact Us
-            h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
+            h3.section-subheading.text-muted
         .row
           .col-lg-12
             form#contactForm(name='sentMessage', novalidate='')
@@ -377,21 +337,22 @@ html(ng-app='app1')
                 button.btn.btn-primary(type='button', data-dismiss='modal')
                   i.fa.fa-times
                   |  Close Project
-    // Portfolio Modal 4
+    //PROFILE MODAL (Portfolio Modal 4 )
     #portfolioModal4.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content
         .close-modal(data-dismiss='modal')
           .lr
             .rl
         .container
-          .row
+          if locals.loggedIn
             .col-lg-8.col-lg-offset-2
               .modal-body
-                // Project Details Go Here
-                img.profile-pic(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
-                h2 Your Name
+                // Profile Details
+                img.profile-pic( align='middle', src='#{locals.user.photo}', alt='')
+                h2 #{locals.user.firstName} #{locals.user.lastName}
                 h3 Favorite Beers
                 .row
+                  // 3 random beers just to see how they display
                   div(class='col-md-3 col-sm-6 portfolio-item')
                     a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
                       img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
@@ -413,32 +374,47 @@ html(ng-app='app1')
                     .portfolio-caption
                       h4 IPA
                       p.text-muted Beer ID: {{beer.beerId}}
+          else
+            a.btn.btn-primary#facebook(href='/auth/facebook') Log in with Facebook
+              i.fa.fa-facebook-official
 
-    // Portfolio Modal 5
+    // FRIENDS PROFILE MODAL (Portfolio Modal 5)
     #portfolioModal5.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content
         .close-modal(data-dismiss='modal')
           .lr
             .rl
         .container
-          .row
+          if locals.loggedIn
             .col-lg-8.col-lg-offset-2
               .modal-body
-                // Project Details Go Here
-                h2 Project Name
-                p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
-                img.img-responsive.img-centered(src='img/portfolio/escape-preview.png', alt='')
-                p
-                  | Escape is a free PSD web template built by 
-                  a(href='https://www.behance.net/MathavanJaya') Mathavan Jaya
-                  | . Escape is a one page web template that was designed with agencies in mind. This template is ideal for those looking for a simple one page solution to describe your business and offer your services.
-                p
-                  | You can download the PSD template in this portfolio sample item at 
-                  a(href='http://freebiesxpress.com/gallery/escape-one-page-psd-web-template/') FreebiesXpress.com
-                  | .
-                button.btn.btn-primary(type='button', data-dismiss='modal')
-                  i.fa.fa-times
-                  |  Close Project
+                // Profile Details
+                img.profile-pic( align='middle', src='#{locals.user.photo}', alt='')
+                h2 #{locals.user.firstName} #{locals.user.lastName}
+                h3 Favorite Beers
+                .row
+                  // 3 random beers just to see how they display
+                  div(class='col-md-3 col-sm-6 portfolio-item')
+                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                    .portfolio-caption
+                      h4 miller
+                      p.text-muted Beer ID: {{beer.beerId}}
+                  div(class='col-md-3 col-sm-6 portfolio-item')
+                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                    .portfolio-caption
+                      h4 Corona
+                      p.text-muted Beer ID: {{beer.beerId}}
+                  div(class='col-md-3 col-sm-6 portfolio-item')
+                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                    .portfolio-caption
+                      h4 IPA
+                      p.text-muted Beer ID: {{beer.beerId}}
     // Portfolio Modal 6
     #portfolioModal6.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content
