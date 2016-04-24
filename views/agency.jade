@@ -41,7 +41,7 @@ html(ng-app='app1')
             li
               a.page-scroll(href='#search') Search
             li
-              a.page-scroll(href='#favorites') Favorites
+              a.page-scroll(href='#friends') Friends
               //a.page-scroll(href='#portfolio') Friends
             li
               a.portfolio-link(href='#portfolioModal4', data-toggle='modal') Profile
@@ -108,92 +108,31 @@ html(ng-app='app1')
                   .portfolio-hover-content
                     i.fa.fa-plus.fa-3x
                 img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
-                img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/img/defaultbeer.png', alt='')
               .portfolio-caption
                 h4 {{beer.name}} 
                 p.text-muted Beer ID: {{beer.beerId}}
     
-    //Favorites Section
-    section#favorites.bg-light-gray
+    //Friends Section
+    section#friends.bg-light-gray
       .container
-        div(ng-controller='favorites_ctrl')
+        div(ng-controller='friends')
           .row
             .col-lg-12.text-center
-              h2.section-heading Favorites
+              h2.section-heading Friends
               h3.section-subheading.text-muted {{test}}
           .row
-            .col-lg-2
-            .col-lg-8
-              input(type='text', class='form-control', ng-model='input', placeholder='Enter a Beer')
-            .col-lg-2
-              button.btn.btn-primary(type='button', data-dismiss='modal', ng-click='addFavorite()') Add Favorite
-          br
-          br
-          .row
-            .col-lg.text-center
-              button.btn.btn-primary(type='button', data-dismiss='modal', ng-click='getFavorites()') Get Favorites
+            div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='beer in data')
+              a.portfolio-link(href='#portfolioModal4', data-toggle='modal')
+                .portfolio-hover
+                  .portfolio-hover-content
+                    i.fa.fa-plus.fa-3x
+                img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+              .portfolio-caption
+                h4 {{beer.name}}
+                p.text-muted Beer ID: {{beer.beerId}}
 
-        .row
-          .col-lg-12.text-center
-            h2.section-heading Friends
-            h3.section-subheading.text-muted Discover what beers your friends like.
-
-      div(ng-controller='friends')
-        .row
-          .col-md-4.col-sm-6.portfolio-item
-            a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
-              .portfolio-hover
-                .portfolio-hover-content
-                  i.fa.fa-plus.fa-3x
-              img.img-responsive(src='img/portfolio/roundicons.png', alt='')
-            .portfolio-caption
-              h4 Round Icons
-              p.text-muted Graphic Design
-          .col-md-4.col-sm-6.portfolio-item
-            a.portfolio-link(href='#portfolioModal2', data-toggle='modal')
-              .portfolio-hover
-                .portfolio-hover-content
-                  i.fa.fa-plus.fa-3x
-              img.img-responsive(src='img/portfolio/startup-framework.png', alt='')
-            .portfolio-caption
-              h4 Startup Framework
-              p.text-muted Website Design
-          .col-md-4.col-sm-6.portfolio-item
-            a.portfolio-link(href='#portfolioModal3', data-toggle='modal')
-              .portfolio-hover
-                .portfolio-hover-content
-                  i.fa.fa-plus.fa-3x
-              img.img-responsive(src='img/portfolio/treehouse.png', alt='')
-            .portfolio-caption
-              h4 Treehouse
-              p.text-muted Website Design
-          .col-md-4.col-sm-6.portfolio-item
-            a.portfolio-link(href='#portfolioModal4', data-toggle='modal')
-              .portfolio-hover
-                .portfolio-hover-content
-                  i.fa.fa-plus.fa-3x
-              img.img-responsive(src='img/portfolio/golden.png', alt='')
-            .portfolio-caption
-              h4 Golden
-              p.text-muted Website Design
-          .col-md-4.col-sm-6.portfolio-item
-            a.portfolio-link(href='#portfolioModal5', data-toggle='modal')
-              .portfolio-hover
-                .portfolio-hover-content
-                  i.fa.fa-plus.fa-3x
-              img.img-responsive(src='img/portfolio/escape.png', alt='')
-            .portfolio-caption
-              h4 Escape
-              p.text-muted Website Design
-          .col-md-4.col-sm-6.portfolio-item
-            a.portfolio-link(href='#portfolioModal6', data-toggle='modal')
-              .portfolio-hover
-                .portfolio-hover-content
-                  i.fa.fa-plus.fa-3x
-              img.img-responsive(src='img/portfolio/dreams.png', alt='')
-            .portfolio-caption
-              h4 Dreams
-              p.text-muted Website Design
     // About Section
     //Deleted
 

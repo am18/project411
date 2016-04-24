@@ -4,6 +4,7 @@ var configAuth = require('../config/auth');
 var Beer = require('../models/beer');
 var Search = require('../models/search');
 var Favorite = require('../models/favorite');
+var User = require('../models/user');
 
 //var mongoose = require('mongoose');
 
@@ -31,7 +32,6 @@ function search(input, callback) {
         }
         if (search){
             // get all beers with search.term
-            console.log('search mongo database');
             Beer.find({ name: new RegExp(input+'+', "i")}, function(err, beers){
                 if (err) {
                     handleError(err);
@@ -49,7 +49,6 @@ function search(input, callback) {
         }
         else {
             // add new search term to database
-            console.log('new search term');
             var newSearch = new Search();
             newSearch.term = input;
 
@@ -201,6 +200,55 @@ function getFavorites(beerIds, callback) {
     }
 }
 
+function getFriendIds(req, callback) {
+    var friendIds = [];
+
+    var options = { method: 'GET',
+        url: 'https://graph.facebook.com/me/friends/',
+        qs: { access_token: req.user.token },
+        headers:
+        { 'postman-token': '0a5cad48-27c9-3e0a-6f3e-d1b5b860b2f1',
+            'cache-control': 'no-cache' } };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        var obj = JSON.parse(body);
+        var data = obj['data'];
+        for (i = 0; i < data.length; i++) {
+            friendIds.push(data[i]['id']);
+        }
+        callback(friendIds);
+    });
+}
+
+function getFriends(friendIds, callback) {
+    // use friendIds to query mongoose for user objects
+    var friends = [];
+    var count = friendIds.length;
+    for(var i = 0; i < friendIds.length; i++) {
+        (function (id) {
+            User.findOne({ userId: id}, function(err, user) {
+                    if (err) {
+                        handleError(err);
+                    }
+                    else if(user) {
+                        count--;
+                        friends.push(user);
+                        // doesn't work if all users are not in database
+                        if (count <= 0) {
+                            callback(friends);
+                        }
+                    }
+                    else {
+                        // no friends found
+                    }
+                }
+            );
+        })(friendIds[i]);
+    }
+}
+
 router.get('/favorites', function(req, res) {
     console.log('get favorites request');
     if (typeof req.user != 'undefined') {
@@ -235,6 +283,19 @@ router.get('/get/:input', function(req, res) {
     });
 });
 
+router.get('/facebook/friends', function(req, res) {
+    console.log('get friends');
+    if (typeof req.user != 'undefined') {
+        getFriendIds(req, function(friendIds) {
+            console.log(friendIds);
+            getFriends(friendIds, function(friends){
+                console.log(friends);
+                res.json(friends);
+            });
+        });
+    }
+});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     if (typeof req.user != 'undefined') {
@@ -245,6 +306,7 @@ router.get('/', function(req, res, next) {
         });
     }
     //res.render('index', { title: 'BeerBuddy' });
+    res.locals.user = req.user;
     res.locals.loggedIn = (req.user) ? true : false;
     res.render('agency', { title: 'BeerBuddy' });
 });
