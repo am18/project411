@@ -66,5 +66,4 @@ app1.controller('favorites_ctrl', function($scope, $http) {
         
     };
 
-
 });

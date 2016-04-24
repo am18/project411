@@ -108,7 +108,7 @@ html(ng-app='app1')
                   .portfolio-hover-content
                     i.fa.fa-plus.fa-3x
                 img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
-                img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/img', alt='')
+                img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/img/defaultbeer.png', alt='')
               .portfolio-caption
                 h4 {{beer.name}} 
                 p.text-muted Beer ID: {{beer.beerId}}
