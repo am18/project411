@@ -307,6 +307,11 @@ section h3.section-subheading{font-size:16px;font-family:"Droid Serif","Helvetic
 	
 	section {
 		padding:150px 0;
+		padding-bottom: 0px;
+	}
+
+	section#team {
+		padding-top: 80px;
 	}
 }
 
@@ -543,3 +548,22 @@ img::selection{background:0 0}
 img::-moz-selection{background:0 0}
 
 body{webkit-tap-highlight-color:#fed136}
+
+.fa.fa-facebook-official{
+	float: left;
+	padding-top: 3px;
+	margin-right: 5px;
+}
+
+#facebook {
+	background: #3B5998;
+	border-color: #3B5998;
+}
+
+#facebook:hover,
+#facebook:focus,
+#facebook:active {
+	color: white;
+}
+
+.profile-pic {margin: auto; max-height: 200px; max-width: 200px;}
