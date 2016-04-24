@@ -104,7 +104,7 @@ html(ng-app='app1')
                     br
           .row
             div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='beer in data')
-              a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+              a.portfolio-link(ng-click='addFavorite(beer.beerId)', data-toggle='modal')
                 .portfolio-hover
                   .portfolio-hover-content
                     i.fa.fa-plus.fa-3x
@@ -123,13 +123,13 @@ html(ng-app='app1')
         div(ng-controller='friends')
           .row
             div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='friend in data')
-              a.portfolio-link(href='#portfolioModal4', data-toggle='modal')
+              a.portfolio-link(data-toggle='modal', ng-click='openModal(friend)')
                 .portfolio-hover
                   .portfolio-hover-content
                     i.fa.fa-plus.fa-3x
                 img.img-responsive(align='middle', src='{{friend.photo}}', alt='')
               .portfolio-caption
-                h4 {{friend.firstName}} {{friend.lastName}}
+                h4 {{friend.firstName}} {{friend.lastName}} {{test}}
         .row
           br
           br
@@ -350,32 +350,17 @@ html(ng-app='app1')
                 img.profile-pic( align='middle', src='#{locals.user.photo}', alt='')
                 h2 #{locals.user.firstName} #{locals.user.lastName}
                 h3 Favorite Beers
-                .row
-                  // 3 random beers just to see how they display
-                  div(class='col-md-3 col-sm-6 portfolio-item')
-                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
-                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
-                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
-                    .portfolio-caption
-                      h4 miller
-                      p.text-muted Beer ID: {{beer.beerId}}
-                  div(class='col-md-3 col-sm-6 portfolio-item')
-                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
-                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
-                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
-                    .portfolio-caption
-                      h4 Corona
-                      p.text-muted Beer ID: {{beer.beerId}}
-                  div(class='col-md-3 col-sm-6 portfolio-item')
-                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
-                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
-                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
-                    .portfolio-caption
-                      h4 IPA
-                      p.text-muted Beer ID: {{beer.beerId}}
           else
             a.btn.btn-primary#facebook(href='/auth/facebook') Log in with Facebook
               i.fa.fa-facebook-official
+
+        div(ng-controller='profile')
+          .row
+            div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='beer in data')
+              img(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='', height='200', width='200')
+              h4 {{beer.name}}
+
+
 
     // FRIENDS PROFILE MODAL (Portfolio Modal 5)
     #portfolioModal5.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
@@ -393,12 +378,12 @@ html(ng-app='app1')
                 h3 Favorite Beers
                 .row
                   // 3 random beers just to see how they display
-                  div(class='col-md-3 col-sm-6 portfolio-item')
+                  div(class='col-md-3 col-sm-6 portfolio-item', ng-controller='friendsModal')
                     a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
                       img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
                       img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
                     .portfolio-caption
-                      h4 miller
+                      h4 {{test}}
                       p.text-muted Beer ID: {{beer.beerId}}
                   div(class='col-md-3 col-sm-6 portfolio-item')
                     a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
@@ -414,21 +399,6 @@ html(ng-app='app1')
                     .portfolio-caption
                       h4 IPA
                       p.text-muted Beer ID: {{beer.beerId}}
-                // Project Details Go Here
-                h2 Project Name
-                p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
-                img.img-responsive.img-centered(src='img/portfolio/escape-preview.png', alt='')
-                p
-                  | Escape is a free PSD web template built by
-                  a(href='https://www.behance.net/MathavanJaya') Mathavan Jaya
-                  | . Escape is a one page web template that was designed with agencies in mind. This template is ideal for those looking for a simple one page solution to describe your business and offer your services.
-                p
-                  | You can download the PSD template in this portfolio sample item at
-                  a(href='http://freebiesxpress.com/gallery/escape-one-page-psd-web-template/') FreebiesXpress.com
-                  | .
-                button.btn.btn-primary(type='button', data-dismiss='modal')
-                  i.fa.fa-times
-                  |  Close Project
     // Portfolio Modal 6
     #portfolioModal6.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content
