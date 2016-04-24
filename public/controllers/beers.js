@@ -28,6 +28,21 @@ app1.controller('ctrl1', function($scope, $http) {
 
 });
 
+app1.controller('friends', function($scope, $http) {
+
+	$http({
+		method: 'GET',
+		url: '/facebook/friends'
+	}).then(function successCallback(response) {
+		$scope.data=response.data;
+		console.log(response.data);
+
+	}, function errorCallback(response) {
+
+	});
+
+});
+
 app1.controller('favorites_ctrl', function($scope, $http) {
 
 	$scope.input;
@@ -35,20 +50,20 @@ app1.controller('favorites_ctrl', function($scope, $http) {
 
 	$scope.addFavorite = function() {
 
-		$http({ 
+		$http({
 	    	method: 'POST',
 	    	url: '/favorites',
 	    	data: "beerId=" + $scope.input,
 	    	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    		
+
     		}).then(function successCallback(response) {
 			$scope.data=response.data;
 			console.log(response.data);
 
 		  	}, function errorCallback(response) {
 
-		  	});	
-        
+		  	});
+
     };
 
 	$scope.getFavorites = function() {
@@ -65,6 +80,5 @@ app1.controller('favorites_ctrl', function($scope, $http) {
 	  	});	
         
     };
-
 
 });
