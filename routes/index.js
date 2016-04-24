@@ -245,6 +245,7 @@ router.get('/', function(req, res, next) {
         });
     }
     //res.render('index', { title: 'BeerBuddy' });
+    res.locals.user = req.user;
     res.locals.loggedIn = (req.user) ? true : false;
     res.render('agency', { title: 'BeerBuddy' });
 });

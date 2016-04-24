@@ -39,7 +39,6 @@ function getFriends(friendIds, callback) {
                     else if(user) {
                         count--;
                         friends.push(user);
-                        console.log(user);
                         // doesn't work if all users are not in database
                         if (count <= 0) {
                             callback(friends);
