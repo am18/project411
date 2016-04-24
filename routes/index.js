@@ -115,13 +115,12 @@ function addBeersToDatabase(beerObjects) {
     }
 }
 
-function addNewFavorite(req) {
-    var beerIdTemp = 'FoPVhW';
-    Favorite.findOne({ userId: req.user.userId, beerId: beerIdTemp}, function(err, fav){
+function addNewFavorite(req, beerId) {
+    Favorite.findOne({ userId: req.user.userId, beerId: beerId}, function(err, fav){
         if (!err && !fav) {
             var newFav = new Favorite();
             newFav.userId = req.user.userId;
-            newFav.beerId = beerIdTemp;
+            newFav.beerId = beerId;
 
             newFav.save(function(err) {
                 if (err) {
@@ -204,13 +203,30 @@ function getFavorites(beerIds, callback) {
 
 router.get('/favorites', function(req, res) {
     console.log('get favorites request');
-    res.json('favorites');
+    if (typeof req.user != 'undefined') {
+        getFavoriteBeerIds(req, function(beerIds) {
+            console.log(beerIds);
+            getFavorites(beerIds, function(beers) {
+                console.log(beers);
+                res.json(beers);
+            });
+        });
+    }
 });
 
 router.post('/favorites', function(req, res) {
     console.log('post favorites request');
     console.log(req.body.beerId);
-    res.json('favorites');
+    addNewFavorite(req, req.body.beerId);
+    if (typeof req.user != 'undefined') {
+        getFavoriteBeerIds(req, function(beerIds) {
+            console.log(beerIds);
+            getFavorites(beerIds, function(beers) {
+                console.log(beers);
+                res.json(beers);
+            });
+        });
+    }
 });
 
 router.get('/get/:input', function(req, res) {
@@ -224,7 +240,6 @@ router.get('/', function(req, res, next) {
     if (typeof req.user != 'undefined') {
         console.log(req.user.userId);
         userId = req.user.userId;
-        addNewFavorite(req);
         isFavorite(req, 'FoPVhW', function(isFav){
             console.log(isFav);
         });
