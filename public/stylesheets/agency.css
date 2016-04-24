@@ -566,4 +566,4 @@ body{webkit-tap-highlight-color:#fed136}
 	color: white;
 }
 
-.profile-pic {margin: auto; max-height: 200px; max-width: 200px;}
+.profile-pic {margin: auto; border: 2px solid black;}
