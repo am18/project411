@@ -32,7 +32,6 @@ function search(input, callback) {
         }
         if (search){
             // get all beers with search.term
-            console.log('search mongo database');
             Beer.find({ name: new RegExp(input+'+', "i")}, function(err, beers){
                 if (err) {
                     handleError(err);
@@ -50,7 +49,6 @@ function search(input, callback) {
         }
         else {
             // add new search term to database
-            console.log('new search term');
             var newSearch = new Search();
             newSearch.term = input;
 
