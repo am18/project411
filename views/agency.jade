@@ -7,7 +7,7 @@ html(ng-app='app1')
     meta(name='description', content='')
     meta(name='author', content='')
     title Beer Buddy
-    
+
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
     link(href='stylesheets/agency.css', rel='stylesheet')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css')
@@ -41,8 +41,8 @@ html(ng-app='app1')
             li
               a.page-scroll(href='#search') Search
             li
-              a.page-scroll(href='#friends') Friends
-              //a.page-scroll(href='#portfolio') Friends
+              //a.page-scroll(href='#friends') Friends
+              a.page-scroll(href='#portfolio') Friends
             li
               a.portfolio-link(href='#portfolioModal4', data-toggle='modal') Profile
             li
@@ -68,6 +68,7 @@ html(ng-app='app1')
           .intro-lead-in Welcome To Beer Buddy!
           .intro-heading It's Nice To Meet You
           a.page-scroll.btn.btn-xl(href='#search') FIND A BEER
+
     // Search Section
     section#search
       .container
@@ -85,7 +86,7 @@ html(ng-app='app1')
               br
               br
               br
-          //  
+          //
             div(class='row text-center')
                 div(class='col-xs-6 col-md-3', ng-repeat='beer in data')
                     //div(style = 'border:5px solid silver; border-radius:10px')
@@ -95,14 +96,14 @@ html(ng-app='app1')
                         img.portfolio-img(ng-show='beer.image == undefined', src='/images/no_image.png', alt='', height="200", width="200")
                         br
                         br
-                        h3 {{beer.name}} 
+                        h3 {{beer.name}}
                         div Beer ID: {{beer.beerId}}
                         br
                         br
                     br
                     br
           .row
-            div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='beer in data') 
+            div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='beer in data')
               a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
                 .portfolio-hover
                   .portfolio-hover-content
@@ -110,34 +111,32 @@ html(ng-app='app1')
                 img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
                 img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/img/defaultbeer.png', alt='')
               .portfolio-caption
-                h4 {{beer.name}} 
-                p.text-muted Beer ID: {{beer.beerId}}
-    
-    //Friends Section
-    section#friends.bg-light-gray
+                h4 {{beer.name}}
+
+    // Friends Section
+    section#portfolio.bg-light-gray
       .container
+        .row
+          .col-lg-12.text-center
+            h2.section-heading Friends
+
         div(ng-controller='friends')
           .row
-            .col-lg-12.text-center
-              h2.section-heading Friends
-              h3.section-subheading.text-muted {{test}}
-          .row
-            div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='beer in data')
+            div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='friend in data')
               a.portfolio-link(href='#portfolioModal4', data-toggle='modal')
                 .portfolio-hover
                   .portfolio-hover-content
                     i.fa.fa-plus.fa-3x
-                img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
-                img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                img.img-responsive(align='middle', src='{{friend.photo}}', alt='')
               .portfolio-caption
-                h4 {{beer.name}}
-                p.text-muted Beer ID: {{beer.beerId}}
+                h4 {{friend.firstName}} {{friend.lastName}}
+        .row
+          br
+          br
 
-    // About Section
-    //Deleted
 
     // Team Section
-    section#team.bg-light-gray
+    section#team
       .container
         .row
           .col-lg-12.text-center
@@ -150,76 +149,36 @@ html(ng-app='app1')
               h4 Ayusha Mittal
               p.
               ul.list-inline.social-buttons
-                li
-                  a(href='#')
-                    i.fa.fa-twitter
-                li
-                  a(href='#')
-                    i.fa.fa-facebook
-                li
-                  a(href='#')
-                    i.fa.fa-linkedin
+
           .col-sm-4
             .team-member
               img.img-responsive.img-circle(src='img/team/Iris.jpg',width='70%', height='70%', alt='')
               h4 Iris Beharaj
               p.
               ul.list-inline.social-buttons
-                li
-                  a(href='#')
-                    i.fa.fa-twitter
-                li
-                  a(href='#')
-                    i.fa.fa-facebook
-                li
-                  a(href='#')
-                    i.fa.fa-linkedin
+
           .col-sm-4
             .team-member
               img.img-responsive.img-circle(src='img/team/Joseph.jpg',width='70%', height='70%', alt='')
               h4 Joseph Tierney
               p.
               ul.list-inline.social-buttons
-                li
-                  a(href='#')
-                    i.fa.fa-twitter
-                li
-                  a(href='#')
-                    i.fa.fa-facebook
-                li
-                  a(href='#')
-                    i.fa.fa-linkedin
+
         .row
           .col-sm-6
             .team-member
-              img.img-responsive.img-circle(src='img/team/Sanam.jpg',width='50%', height='50%', alt='')
+              img.img-responsive.img-circle(src='img/team/Sanam.jpg',width='45%', height='45%', alt='')
               h4 Sanam Patel
               p.
               ul.list-inline.social-buttons
-                li
-                  a(href='#')
-                    i.fa.fa-twitter
-                li
-                  a(href='#')
-                    i.fa.fa-facebook
-                li
-                  a(href='#')
-                    i.fa.fa-linkedin
+
           .col-sm-6
             .team-member
-              img.img-responsive.img-circle(src='img/team/Yizhi.jpg', width='50%', height='50%', alt='')
+              img.img-responsive.img-circle(src='img/team/Yizhi.jpg', width='47%', height='47%', alt='')
               h4 Yizhi Huang
               p.
               ul.list-inline.social-buttons
-                li
-                  a(href='#')
-                    i.fa.fa-twitter
-                li
-                  a(href='#')
-                    i.fa.fa-facebook
-                li
-                  a(href='#')
-                    i.fa.fa-linkedin
+
 
     // Contact Section
     section#contact
@@ -227,7 +186,7 @@ html(ng-app='app1')
         .row
           .col-lg-12.text-center
             h2.section-heading Contact Us
-            h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
+            h3.section-subheading.text-muted
         .row
           .col-lg-12
             form#contactForm(name='sentMessage', novalidate='')
@@ -316,9 +275,9 @@ html(ng-app='app1')
                   | Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
                 p
                   strong Want these icons in this portfolio item sample?
-                  | You can download 60 of them for free, courtesy of 
+                  | You can download 60 of them for free, courtesy of
                   a(href='https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc') RoundIcons.com
-                  | , or you can purchase the 1500 icon set 
+                  | , or you can purchase the 1500 icon set
                   a(href='https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc') here
                   | .
                 ul.list-inline
@@ -367,31 +326,32 @@ html(ng-app='app1')
                 p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
                 img.img-responsive.img-centered(src='img/portfolio/treehouse-preview.png', alt='')
                 p
-                  | Treehouse is a free PSD web template built by 
+                  | Treehouse is a free PSD web template built by
                   a(href='https://www.behance.net/MathavanJaya') Mathavan Jaya
                   | . This is bright and spacious design perfect for people or startup companies looking to showcase their apps or other projects.
                 p
-                  | You can download the PSD template in this portfolio sample item at 
+                  | You can download the PSD template in this portfolio sample item at
                   a(href='http://freebiesxpress.com/gallery/treehouse-free-psd-web-template/') FreebiesXpress.com
                   | .
                 button.btn.btn-primary(type='button', data-dismiss='modal')
                   i.fa.fa-times
                   |  Close Project
-    // Portfolio Modal 4
+    //PROFILE MODAL (Portfolio Modal 4 )
     #portfolioModal4.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content
         .close-modal(data-dismiss='modal')
           .lr
             .rl
         .container
-          .row
+          if locals.loggedIn
             .col-lg-8.col-lg-offset-2
               .modal-body
-                // Project Details Go Here
-                img.profile-pic(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
-                h2 Your Name
+                // Profile Details
+                img.profile-pic( align='middle', src='#{locals.user.photo}', alt='')
+                h2 #{locals.user.firstName} #{locals.user.lastName}
                 h3 Favorite Beers
                 .row
+                  // 3 random beers just to see how they display
                   div(class='col-md-3 col-sm-6 portfolio-item')
                     a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
                       img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
@@ -413,27 +373,57 @@ html(ng-app='app1')
                     .portfolio-caption
                       h4 IPA
                       p.text-muted Beer ID: {{beer.beerId}}
+          else
+            a.btn.btn-primary#facebook(href='/auth/facebook') Log in with Facebook
+              i.fa.fa-facebook-official
 
-    // Portfolio Modal 5
+    // FRIENDS PROFILE MODAL (Portfolio Modal 5)
     #portfolioModal5.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content
         .close-modal(data-dismiss='modal')
           .lr
             .rl
         .container
-          .row
+          if locals.loggedIn
             .col-lg-8.col-lg-offset-2
               .modal-body
+                // Profile Details
+                img.profile-pic( align='middle', src='#{locals.user.photo}', alt='')
+                h2 #{locals.user.firstName} #{locals.user.lastName}
+                h3 Favorite Beers
+                .row
+                  // 3 random beers just to see how they display
+                  div(class='col-md-3 col-sm-6 portfolio-item')
+                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                    .portfolio-caption
+                      h4 miller
+                      p.text-muted Beer ID: {{beer.beerId}}
+                  div(class='col-md-3 col-sm-6 portfolio-item')
+                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                    .portfolio-caption
+                      h4 Corona
+                      p.text-muted Beer ID: {{beer.beerId}}
+                  div(class='col-md-3 col-sm-6 portfolio-item')
+                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
+                    .portfolio-caption
+                      h4 IPA
+                      p.text-muted Beer ID: {{beer.beerId}}
                 // Project Details Go Here
                 h2 Project Name
                 p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
                 img.img-responsive.img-centered(src='img/portfolio/escape-preview.png', alt='')
                 p
-                  | Escape is a free PSD web template built by 
+                  | Escape is a free PSD web template built by
                   a(href='https://www.behance.net/MathavanJaya') Mathavan Jaya
                   | . Escape is a one page web template that was designed with agencies in mind. This template is ideal for those looking for a simple one page solution to describe your business and offer your services.
                 p
-                  | You can download the PSD template in this portfolio sample item at 
+                  | You can download the PSD template in this portfolio sample item at
                   a(href='http://freebiesxpress.com/gallery/escape-one-page-psd-web-template/') FreebiesXpress.com
                   | .
                 button.btn.btn-primary(type='button', data-dismiss='modal')
@@ -454,11 +444,11 @@ html(ng-app='app1')
                 p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
                 img.img-responsive.img-centered(src='img/portfolio/dreams-preview.png', alt='')
                 p
-                  | Dreams is a free PSD web template built by 
+                  | Dreams is a free PSD web template built by
                   a(href='https://www.behance.net/MathavanJaya') Mathavan Jaya
                   | . Dreams is a modern one page web template designed for almost any purpose. It’s a beautiful template that’s designed with the Bootstrap framework in mind.
                 p
-                  | You can download the PSD template in this portfolio sample item at 
+                  | You can download the PSD template in this portfolio sample item at
                   a(href='http://freebiesxpress.com/gallery/dreams-free-one-page-web-template/') FreebiesXpress.com
                   | .
                 button.btn.btn-primary(type='button', data-dismiss='modal')
@@ -476,8 +466,12 @@ html(ng-app='app1')
     script(src='js/jqBootstrapValidation.js')
     script(src='js/contact_me.js')
     // Custom Theme JavaScript
-    script(src='js/agency.js')
+
+
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js')
+    script(src='js/agency.js')
     script(src='/controllers/beers.js')
-       
+
+
+
 
