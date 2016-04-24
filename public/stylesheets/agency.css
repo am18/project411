@@ -121,6 +121,7 @@ fieldset[disabled] .btn-primary.active {
 	border-radius:3px;
 	font-size:18px;
 	padding:20px 40px;
+	margin-bottom: 30px;
 }
 
 .btn-xl:hover,
@@ -566,4 +567,4 @@ body{webkit-tap-highlight-color:#fed136}
 	color: white;
 }
 
-.profile-pic {margin: auto; max-height: 200px; max-width: 200px;}
+.profile-pic {margin: auto; border: 2px solid black;}
