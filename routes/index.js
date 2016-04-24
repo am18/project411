@@ -10,6 +10,7 @@ var Favorite = require('../models/favorite');
 var request = require('request');
 var obj;
 var data;
+var userId;
 
 
 function search(input, callback) {
@@ -114,13 +115,12 @@ function addBeersToDatabase(beerObjects) {
     }
 }
 
-function addNewFavorite(req) {
-    var beerIdTemp = 'FoPVhW';
-    Favorite.findOne({ userId: req.user.userId, beerId: beerIdTemp}, function(err, fav){
+function addNewFavorite(req, beerId) {
+    Favorite.findOne({ userId: req.user.userId, beerId: beerId}, function(err, fav){
         if (!err && !fav) {
             var newFav = new Favorite();
             newFav.userId = req.user.userId;
-            newFav.beerId = beerIdTemp;
+            newFav.beerId = beerId;
 
             newFav.save(function(err) {
                 if (err) {
@@ -137,6 +137,98 @@ function addNewFavorite(req) {
     });
 }
 
+function isFavorite(req, beerId, callback) {
+    var isFav = false;
+    Favorite.findOne({ userId: req.user.userId, beerId: beerId}, function(err, fav){
+        if (!err && !fav) {
+            // this beer is not a favorite
+            isFav = false;
+        }
+        else if (!err) {
+            // this beer is a favorite
+            isFav = true;
+        }
+        else {
+            console.log('ERROR: ' + err);
+        }
+        callback(isFav);
+    });
+}
+
+
+
+function getFavoriteBeerIds(req, callback) {
+    var beerIds = [];
+    Favorite.find({ userId: req.user.userId}, function(err, favs){
+        if (err) {
+            handleError(err);
+        }
+        else if (favs) {
+            for (i = 0; i < favs.length; i++) {
+                beerIds.push(favs[i]['beerId']);
+            }
+        }
+        else {
+            // no favorites found
+            console.log('no favorites found');
+        }
+        callback(beerIds);
+    });
+}
+
+function getFavorites(beerIds, callback) {
+    var beers = [];
+    var count = beerIds.length;
+    for(var i = 0; i < beerIds.length; i++) {
+        (function (id) {
+            Beer.findOne({ beerId: id}, function(err, beer) {
+                    if (err) {
+                        handleError(err);
+                    }
+                    else if(beer) {
+                        count--;
+                        beers.push(beer);
+                        if (count <= 0) {
+                            callback(beers);
+                        }
+                    }
+                    else {
+                        // no favorite beers found
+                    }
+                }
+            );
+        })(beerIds[i]);
+    }
+}
+
+router.get('/favorites', function(req, res) {
+    console.log('get favorites request');
+    if (typeof req.user != 'undefined') {
+        getFavoriteBeerIds(req, function(beerIds) {
+            console.log(beerIds);
+            getFavorites(beerIds, function(beers) {
+                console.log(beers);
+                res.json(beers);
+            });
+        });
+    }
+});
+
+router.post('/favorites', function(req, res) {
+    console.log('post favorites request');
+    console.log(req.body.beerId);
+    addNewFavorite(req, req.body.beerId);
+    if (typeof req.user != 'undefined') {
+        getFavoriteBeerIds(req, function(beerIds) {
+            console.log(beerIds);
+            getFavorites(beerIds, function(beers) {
+                console.log(beers);
+                res.json(beers);
+            });
+        });
+    }
+});
+
 router.get('/get/:input', function(req, res) {
     search(req.params.input, function(beers) {
         res.json(beers);
@@ -147,9 +239,13 @@ router.get('/get/:input', function(req, res) {
 router.get('/', function(req, res, next) {
     if (typeof req.user != 'undefined') {
         console.log(req.user.userId);
-        addNewFavorite(req);
+        userId = req.user.userId;
+        isFavorite(req, 'FoPVhW', function(isFav){
+            console.log(isFav);
+        });
     }
     //res.render('index', { title: 'BeerBuddy' });
+    res.locals.loggedIn = (req.user) ? true : false;
     res.render('agency', { title: 'BeerBuddy' });
 });
 

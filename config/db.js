@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/beerbuddy');
+mongoose.connect('mongodb://project411:beerbuddy@ds013891.mlab.com:13891/beerbuddy');
 
 mongoose.connection.on('open', function () {
     console.log('Connected to mongo server.');
