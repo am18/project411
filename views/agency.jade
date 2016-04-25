@@ -104,7 +104,7 @@ html(ng-app='app1')
                     br
           .row
             div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='beer in data')
-              a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+              a.portfolio-link(ng-click='addFavorite(beer.beerId)', data-toggle='modal')
                 .portfolio-hover
                   .portfolio-hover-content
                     i.fa.fa-plus.fa-3x
@@ -123,11 +123,11 @@ html(ng-app='app1')
         div(ng-controller='friends')
           .row
             div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='friend in data')
-              a.portfolio-link(href='#portfolioModal4', data-toggle='modal')
+              a.portfolio-link(data-toggle='modal', ng-click='openModal(friend)')
                 .portfolio-hover
                   .portfolio-hover-content
                     i.fa.fa-plus.fa-3x
-                img.img-responsive(align='middle', src='{{friend.photo}}', alt='')
+                img.img-responsive(align='middle', src='{{friend.photo}}', alt='', width='300')
               .portfolio-caption
                 h4 {{friend.firstName}} {{friend.lastName}}
         .row
@@ -351,32 +351,18 @@ html(ng-app='app1')
                 img.profile-pic( align='middle', src='#{locals.user.photo}', alt='')
                 h2 #{locals.user.firstName} #{locals.user.lastName}
                 h3 Favorite Beers
-                .row
-                  // 3 random beers just to see how they display
-                  div(class='col-md-3 col-sm-6 portfolio-item')
-                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
-                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
-                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
-                    .portfolio-caption
-                      h4 miller
-                      p.text-muted Beer ID: {{beer.beerId}}
-                  div(class='col-md-3 col-sm-6 portfolio-item')
-                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
-                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
-                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
-                    .portfolio-caption
-                      h4 Corona
-                      p.text-muted Beer ID: {{beer.beerId}}
-                  div(class='col-md-3 col-sm-6 portfolio-item')
-                    a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
-                      img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
-                      img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
-                    .portfolio-caption
-                      h4 IPA
-                      p.text-muted Beer ID: {{beer.beerId}}
           else
             a.btn.btn-primary#facebook(href='/auth/facebook') Log in with Facebook
               i.fa.fa-facebook-official
+
+        div(ng-controller='profile')
+          .row
+            div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='beer in data')
+              img(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='', height='200', width='200')
+              img(ng-show='beer.image == undefined', align='middle', src='/img/defaultbeer.png', alt='', height='200', width='200')
+              h4 {{beer.name}}
+
+
 
     // FRIENDS PROFILE MODAL (Portfolio Modal 5)
     #portfolioModal5.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
@@ -394,12 +380,12 @@ html(ng-app='app1')
                 h3 Favorite Beers
                 .row
                   // 3 random beers just to see how they display
-                  div(class='col-md-3 col-sm-6 portfolio-item')
+                  div(class='col-md-3 col-sm-6 portfolio-item', ng-controller='friendsModal')
                     a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
                       img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
                       img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/images/no_image.png', alt='')
                     .portfolio-caption
-                      h4 miller
+                      h4 {{test}}
                       p.text-muted Beer ID: {{beer.beerId}}
                   div(class='col-md-3 col-sm-6 portfolio-item')
                     a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
