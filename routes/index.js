@@ -158,7 +158,7 @@ function getFavoriteBeerIds(userId, callback) {
     var beerIds = [];
     Favorite.find({ userId: userId}, function(err, favs){
         if (err) {
-            handleError(err);
+            console.log(err);
         }
         else if (favs) {
             for (i = 0; i < favs.length; i++) {
