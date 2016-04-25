@@ -61,7 +61,7 @@ app1.controller('friends', function($scope, $http, $location) {
 	}, function errorCallback(response) {
 
 	});
-    
+
 
 });
 
