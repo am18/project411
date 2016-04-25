@@ -45,7 +45,7 @@ app1.controller('ctrl1', function($scope, $http) {
 
 });
 
-app1.controller('friends', function($scope, $http, $modal, $location) {
+app1.controller('friends', function($scope, $http, $location) {
 
     $scope.test = 'placeholder';
     
