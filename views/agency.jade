@@ -127,7 +127,7 @@ html(ng-app='app1')
                 .portfolio-hover
                   .portfolio-hover-content
                     i.fa.fa-plus.fa-3x
-                img.img-responsive(align='middle', src='{{friend.photo}}', alt='')
+                img.img-responsive(align='middle', src='{{friend.photo}}', alt='', width='300')
               .portfolio-caption
                 h4 {{friend.firstName}} {{friend.lastName}}
         .row
@@ -359,6 +359,7 @@ html(ng-app='app1')
           .row
             div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='beer in data')
               img(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='', height='200', width='200')
+              img(ng-show='beer.image == undefined', align='middle', src='/img/defaultbeer.png', alt='', height='200', width='200')
               h4 {{beer.name}}
 
 
