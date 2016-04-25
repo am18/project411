@@ -6,8 +6,6 @@ var Search = require('../models/search');
 var Favorite = require('../models/favorite');
 var User = require('../models/user');
 
-//var mongoose = require('mongoose');
-
 var request = require('request');
 var obj;
 var data;
@@ -156,9 +154,9 @@ function isFavorite(req, beerId, callback) {
 
 
 
-function getFavoriteBeerIds(req, callback) {
+function getFavoriteBeerIds(userId, callback) {
     var beerIds = [];
-    Favorite.find({ userId: req.user.userId}, function(err, favs){
+    Favorite.find({ userId: userId}, function(err, favs){
         if (err) {
             handleError(err);
         }
@@ -252,7 +250,7 @@ function getFriends(friendIds, callback) {
 router.get('/favorites', function(req, res) {
     console.log('get favorites request');
     if (typeof req.user != 'undefined') {
-        getFavoriteBeerIds(req, function(beerIds) {
+        getFavoriteBeerIds(req.user.userId, function(beerIds) {
             console.log(beerIds);
             getFavorites(beerIds, function(beers) {
                 console.log(beers);
@@ -305,21 +303,9 @@ router.get('/', function(req, res, next) {
             console.log(isFav);
         });
     }
-    //res.render('index', { title: 'BeerBuddy' });
     res.locals.user = req.user;
     res.locals.loggedIn = (req.user) ? true : false;
     res.render('agency', { title: 'BeerBuddy' });
-});
-
-router.post('/', function(req, res) {
-    if (req.body.input.length > 0) {
-        search(req.body.input);
-    }
-    else {
-        // display error using connect-flash
-    }
-    //res.render('index', { title: 'BeerBuddy', beers: beerObjects });
-    res.render('agency', { title: 'BeerBuddy', beers: beerObjects });
 });
 
 module.exports = router;
