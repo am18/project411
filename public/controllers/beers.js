@@ -45,7 +45,9 @@ app1.controller('ctrl1', function($scope, $http) {
 
 });
 
-app1.controller('friends', function($scope, $http, $modal, $location) {
+app1.controller('friends', function($scope, $http, $location) {
+
+
 
     $scope.test = 'placeholder';
     
@@ -60,19 +62,6 @@ app1.controller('friends', function($scope, $http, $modal, $location) {
 
 	});
     
-    $scope.openModal = function (friend) {
-        var modalInstance = $modal.open({
-            templateUrl: '#portfolioModal5',
-            controller: 'friendsModal',
-            resolve: {
-                friend: function () {
-                    return friend;
-                }
-            }
-        });
-    }
-
-
 
 });
 
