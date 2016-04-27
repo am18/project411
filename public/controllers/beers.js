@@ -1,7 +1,7 @@
 var app1 = angular.module('app1', []);
 
 
-app1.controller('ctrl1', function($scope, $http) {
+app1.controller('ctrl1', function($scope, $http, beer) {
 
 	$scope.input;
 
@@ -26,28 +26,17 @@ app1.controller('ctrl1', function($scope, $http) {
 
   	});
 
-    $scope.addFavorite = function(beerId) {
 
-        $http({
-            method: 'POST',
-            url: '/favorites',
-            data: "beerId=" + beerId,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	$scope.openModal = function(beerId) {
 
-        }).then(function successCallback(response) {
+		beer.setProperty(beerId);
 
-
-        }, function errorCallback(response) {
-
-        });
-
-    };
+	};
 
 });
 
-app1.controller('friends', function($scope, $http, $location) {
+app1.controller('friends', function($scope, $http, user) {
 
-    $scope.test = 'placeholder';
     
 	$http({
 		method: 'GET',
@@ -59,29 +48,37 @@ app1.controller('friends', function($scope, $http, $location) {
 	}, function errorCallback(response) {
 
 	});
-    
-    $scope.openModal = function (friend) {
-        var modalInstance = $modal.open({
-            templateUrl: '#portfolioModal5',
-            controller: 'friendsModal',
-            resolve: {
-                friend: function () {
-                    return friend;
-                }
-            }
-        });
-    }
 
+	$scope.openModal = function(friend) {
+
+		user.setProperty(friend);
+
+	};
 
 
 });
 
 
-app1.controller('friendsModal', ['$scope', '$location', 'friend', function ($scope, $location, friend) {
+app1.controller('friendsModal', function ($scope, $http, user) {
 
-	$scope.test = friend;
 
-}]);
+	$scope.setFriend = function () {
+		$scope.friend = user.getProperty();
+		return $scope.friend;
+	}
+
+	// $http({
+	// 	method: 'GET',
+	// 	url: '/favorites' + $scope.setFriend().userId
+	// }).then(function successCallback(response) {
+	// 	$scope.data=response.data;
+	// 	console.log(response.data);
+    //
+	// }, function errorCallback(response) {
+    //
+	// });
+
+});
 
 app1.service('user', function () {
 	var userId;
@@ -96,6 +93,20 @@ app1.service('user', function () {
 	};
 });
 
+app1.service('beer', function () {
+	var beerId;
+
+	return {
+		getProperty: function () {
+			return beerId;
+		},
+		setProperty: function(value) {
+			beerId = value;
+		}
+	};
+});
+
+
 app1.controller('profile', function($scope, $http) {
 
     $http({
@@ -108,5 +119,32 @@ app1.controller('profile', function($scope, $http) {
     }, function errorCallback(response) {
 
     });
+
+});
+
+app1.controller('beerModal', function ($scope, $http, beer) {
+
+
+	$scope.setBeer= function () {
+		$scope.beer = beer.getProperty();
+		return $scope.beer;
+	}
+
+	$scope.addFavorite = function(beerId) {
+
+		$http({
+			method: 'POST',
+			url: '/favorites',
+			data: "beerId=" + beerId,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).then(function successCallback(response) {
+
+
+		}, function errorCallback(response) {
+
+		});
+
+	};
 
 });

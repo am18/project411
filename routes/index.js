@@ -158,7 +158,7 @@ function getFavoriteBeerIds(userId, callback) {
     var beerIds = [];
     Favorite.find({ userId: userId}, function(err, favs){
         if (err) {
-            handleError(err);
+            console.log(err);
         }
         else if (favs) {
             for (i = 0; i < favs.length; i++) {
@@ -248,9 +248,20 @@ function getFriends(friendIds, callback) {
 }
 
 router.get('/favorites', function(req, res) {
-    console.log('get favorites request');
     if (typeof req.user != 'undefined') {
         getFavoriteBeerIds(req.user.userId, function(beerIds) {
+            console.log(beerIds);
+            getFavorites(beerIds, function(beers) {
+                console.log(beers);
+                res.json(beers);
+            });
+        });
+    }
+});
+
+router.get('/favorites/:userId', function(req, res) {
+    if (typeof req.user != 'undefined') {
+        getFavoriteBeerIds(req.params.userId, function(beerIds) {
             console.log(beerIds);
             getFavorites(beerIds, function(beers) {
                 console.log(beers);
