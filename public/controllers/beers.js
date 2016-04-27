@@ -66,6 +66,7 @@ app1.controller('friends', function($scope, $http, user) {
 	$scope.openModal = function(friend) {
 
 		user.setProperty(friend);
+
         $('#portfolioModal5').modal();
 
 
@@ -78,7 +79,7 @@ app1.controller('friends', function($scope, $http, user) {
 
 
 app1.controller('friendsModal', function ($scope, $http, user, beer) {
-    
+
 
     $scope.$watch(function () { return user.getUserId() }, function (newVal, oldVal) {
         if (typeof newVal !== 'undefined') {
@@ -98,7 +99,7 @@ app1.controller('friendsModal', function ($scope, $http, user, beer) {
 
         }
     });
-    
+
 
     $scope.openModal = function(beerId) {
 
@@ -110,11 +111,10 @@ app1.controller('friendsModal', function ($scope, $http, user, beer) {
         $('#portfolioModal5').on('hidden.bs.modal', function () {
             $('#portfolioModal3').modal('show');
 
-        })
+        });
+
         return;
-
     };
-
 });
 
 app1.service('user', function () {

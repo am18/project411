@@ -553,7 +553,7 @@ ul.social-buttons li a:active{background-color:#fed136}
 .login-modal .modal-content img{margin-bottom:30px}
 
 
-.login-modal .close-modal{position:absolute;width:75px;height:75px;background-color:transparent;top:25px;right:25px;cursor:pointer}
+.login-modal .close-modal{position:absolute;width:75px;height:75px;background-color:transparent;top:25px;right:25px;cursor:pointer;data-dismiss:modal}
 
 .login-modal .close-modal:hover{opacity:.3}
 
