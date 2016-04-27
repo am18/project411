@@ -248,9 +248,21 @@ function getFriends(friendIds, callback) {
 }
 
 router.get('/favorites', function(req, res) {
-    console.log('get favorites request');
     if (typeof req.user != 'undefined') {
+        console.log('user is' + req.user.userId);
         getFavoriteBeerIds(req.user.userId, function(beerIds) {
+            console.log(beerIds);
+            getFavorites(beerIds, function(beers) {
+                console.log(beers);
+                res.json(beers);
+            });
+        });
+    }
+});
+
+router.get('/favorites/:userId', function(req, res) {
+    if (typeof req.user != 'undefined') {
+        getFavoriteBeerIds(req.params.userId, function(beerIds) {
             console.log(beerIds);
             getFavorites(beerIds, function(beers) {
                 console.log(beers);
