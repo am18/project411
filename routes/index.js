@@ -249,6 +249,7 @@ function getFriends(friendIds, callback) {
 
 router.get('/favorites', function(req, res) {
     if (typeof req.user != 'undefined') {
+        console.log('user is' + req.user.userId);
         getFavoriteBeerIds(req.user.userId, function(beerIds) {
             console.log(beerIds);
             getFavorites(beerIds, function(beers) {
