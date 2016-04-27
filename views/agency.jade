@@ -104,6 +104,7 @@ html(ng-app='app1')
           .col-lg-12.text-center
             h2.section-heading Friends
 
+      if locals.loggedIn
         div(ng-controller='friends')
           .row
             div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='friend in data')
@@ -117,6 +118,20 @@ html(ng-app='app1')
         .row
           br
           br
+      else
+        .row
+          .col-lg-12.text-center
+            a.btn.btn-primary#facebook(href='/auth/facebook') Log in with Facebook
+              i.fa.fa-facebook-official
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+
+
 
 
 

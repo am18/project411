@@ -47,7 +47,7 @@ app1.controller('profile', function($scope, $http) {
     }, function errorCallback(response) {
 
     });
-    
+
 });
 
 app1.controller('friends', function($scope, $http, user) {
@@ -104,8 +104,14 @@ app1.controller('friendsModal', function ($scope, $http, user, beer) {
 
         beer.setProperty(beerId);
 
-        $('#portfolioModal3').modal('show');
 
+        $('#portfolioModal5').modal('hide');
+
+        $('#portfolioModal5').on('hidden.bs.modal', function () {
+            $('#portfolioModal3').modal('show');
+
+        })
+        return;
 
     };
 
