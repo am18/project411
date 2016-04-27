@@ -104,7 +104,7 @@ html(ng-app='app1')
                     br
           .row
             div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='beer in data')
-              a.portfolio-link(ng-click='addFavorite(beer.beerId)', data-toggle='modal')
+              a.portfolio-link(href='#portfolioModal3', ng-click='openModal(beer)', data-toggle='modal')
                 .portfolio-hover
                   .portfolio-hover-content
                     i.fa.fa-plus.fa-3x
@@ -123,16 +123,44 @@ html(ng-app='app1')
         div(ng-controller='friends')
           .row
             div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='friend in data')
-              a.portfolio-link(data-toggle='modal', ng-click='test = friend.userId')
+              a.portfolio-link(ng-href='#portfolioModal5', data-toggle='modal', ng-click='openModal(friend)')
                 .portfolio-hover
                   .portfolio-hover-content
                     i.fa.fa-plus.fa-3x
                 img.img-responsive(align='middle', src='{{friend.photo}}', alt='')
               .portfolio-caption
-                h4 {{friend.firstName}} {{friend.lastName}}
+                h4 {{friend.firstName}}
         .row
           br
           br
+
+    #portfolioModal5.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        .container(ng-controller='friendsModal')
+          if locals.loggedIn
+            .col-lg-8.col-lg-offset-2
+              .modal-body
+                // Profile Details
+                img.profile-pic( align='middle', src='{{setFriend().photo}}', alt='')
+                h2 {{setFriend().firstName}} {{setFriend.lastName}}
+                h3 Favorite Beers
+
+          else
+            a.btn.btn-primary#facebook(href='/auth/facebook') Log in with Facebook
+              i.fa.fa-facebook-official
+          .row
+            div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='beer in data')
+              a.portfolio-link(ng-click='addFavorite(beer.beerId)', data-toggle='modal')
+                .portfolio-hover
+                  .portfolio-hover-content
+                    i.fa.fa-plus.fa-3x
+                img.img-responsive(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='')
+                img.img-responsive(ng-show='beer.image == undefined', align='middle', src='/img/defaultbeer.png', alt='')
+              .portfolio-caption
+                h4 {{beer.name}}
 
 
     // Team Section
@@ -311,31 +339,26 @@ html(ng-app='app1')
                     button.btn.btn-primary(type='button', data-dismiss='modal')
                       i.fa.fa-times
                       |  Close Project
+
     // Portfolio Modal 3
     #portfolioModal3.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content
         .close-modal(data-dismiss='modal')
           .lr
             .rl
-        .container
+        .container(ng-controller='beerModal')
           .row
             .col-lg-8.col-lg-offset-2
               .modal-body
                 // Project Details Go Here
-                h2 Project Name
-                p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
-                img.img-responsive.img-centered(src='img/portfolio/treehouse-preview.png', alt='')
-                p
-                  | Treehouse is a free PSD web template built by
-                  a(href='https://www.behance.net/MathavanJaya') Mathavan Jaya
-                  | . This is bright and spacious design perfect for people or startup companies looking to showcase their apps or other projects.
-                p
-                  | You can download the PSD template in this portfolio sample item at
-                  a(href='http://freebiesxpress.com/gallery/treehouse-free-psd-web-template/') FreebiesXpress.com
-                  | .
-                button.btn.btn-primary(type='button', data-dismiss='modal')
-                  i.fa.fa-times
-                  |  Close Project
+                img.profile-pic(ng-show='setBeer().image != undefined', align='middle', src='{{beer.image}}', alt='', height='300', width='300')
+                img.profile-pic(ng-show='setBeer().image == undefined', align='middle', src='/img/defaultbeer.png', alt='', height='300', width='300')
+                h2 {{setBeer().name}}
+                p.item-intro.text-muted Alcohol by Volume: {{setBeer().abv}}%
+
+                p {{setBeer().description}}
+                button.btn.btn-primary(type='button', ng-click='addFavorite(setBeer().beerId)')
+                  |  Add to Favorites
     //PROFILE MODAL (Portfolio Modal 4 )
     #portfolioModal4.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
       .modal-content
@@ -363,29 +386,7 @@ html(ng-app='app1')
 
 
     // FRIENDS PROFILE MODAL (Portfolio Modal 5)
-    #portfolioModal5.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
-      .modal-content
-        .close-modal(data-dismiss='modal')
-          .lr
-            .rl
-        .container
-          if locals.loggedIn
-            .col-lg-8.col-lg-offset-2
-              .modal-body
-                // Profile Details
-                img.profile-pic( align='middle', src='#{locals.user.photo}', alt='')
-                h2 #{locals.user.firstName} #{locals.user.lastName}
-                h3 Favorite Beers
-          else
-            a.btn.btn-primary#facebook(href='/auth/facebook') Log in with Facebook
-              i.fa.fa-facebook-official
 
-        div(ng-controller='friends')
-          .row
-            | {{}}
-            div(class='col-md-3 col-sm-6 portfolio-item', ng-repeat='beer in data')
-              img(ng-show='beer.image != undefined', align='middle', src='{{beer.image}}', alt='', height='200', width='200')
-              h4 {{beer.name}}
 
     // Portfolio Modal 6
     #portfolioModal6.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
@@ -425,11 +426,11 @@ html(ng-app='app1')
     script(src='js/contact_me.js')
     // Custom Theme JavaScript
 
-
+    script(src='https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js')
     script(src='js/agency.js')
     script(src='/controllers/beers.js')
-    script(src='https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js')
+
 
 
 
