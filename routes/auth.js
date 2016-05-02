@@ -12,12 +12,3 @@ module.exports = function (app, passport) {
         passport.authenticate('facebook', { scope: ['email', 'user_friends'], successRedirect: '/', failureRedirect: '/login' }));
 
 };
-
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        console.log(req.user.userId);
-        return next();
-    }
-
-    res.redirect('/');
-}

@@ -1,0 +1,5 @@
+{
+  "_id" : ObjectId("571a4aa1483c62dd3ddcc295"),
+  "term" : "corona", // search term taken from search form
+  "__v" : 0
+}
