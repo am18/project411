@@ -11,7 +11,7 @@ var obj;
 var data;
 var userId;
 
-
+// take search input and return results
 function search(input, callback) {
     var beerObjects = [];
     var options = { method: 'GET',
@@ -56,6 +56,7 @@ function search(input, callback) {
                 }
             });
 
+            // make request to breweryDB api and get beers
             request(options, function (error, response, body) {
                 if (error) throw new Error(error);
                 obj = JSON.parse(body);
@@ -82,12 +83,14 @@ function search(input, callback) {
     });
 }
 
+// save beers to database
 function addBeersToDatabase(beerObjects) {
     for(var i = 0; i < beerObjects.length; i++) {
         (function (currentBeer) {
             Beer.findOne({ beerId: currentBeer.beerId},
                 function(err, beer) {
                     if(!err && !beer) {
+                        // add new beer to database
                         var newBeer  = new Beer();
                         newBeer.beerId = currentBeer.beerId;
                         newBeer.name = currentBeer.name;
@@ -112,6 +115,7 @@ function addBeersToDatabase(beerObjects) {
     }
 }
 
+// add a new favorite beer if it is not already a favorite
 function addNewFavorite(req, beerId) {
     Favorite.findOne({ userId: req.user.userId, beerId: beerId}, function(err, fav){
         if (!err && !fav) {
@@ -134,9 +138,10 @@ function addNewFavorite(req, beerId) {
     });
 }
 
-function isFavorite(req, beerId, callback) {
+// return true if the beer is already a favorite, return false if it isn't
+function isFavorite(userId, beerId, callback) {
     var isFav = false;
-    Favorite.findOne({ userId: req.user.userId, beerId: beerId}, function(err, fav){
+    Favorite.findOne({ userId: userId, beerId: beerId}, function(err, fav){
         if (!err && !fav) {
             // this beer is not a favorite
             isFav = false;
@@ -152,8 +157,7 @@ function isFavorite(req, beerId, callback) {
     });
 }
 
-
-
+// get the beer ids of all favorites
 function getFavoriteBeerIds(userId, callback) {
     var beerIds = [];
     Favorite.find({ userId: userId}, function(err, favs){
@@ -173,6 +177,7 @@ function getFavoriteBeerIds(userId, callback) {
     });
 }
 
+// use the beer ids to get full beer info of all favorites
 function getFavorites(beerIds, callback) {
     var beers = [];
     var count = beerIds.length;
@@ -198,6 +203,7 @@ function getFavorites(beerIds, callback) {
     }
 }
 
+// facebook request to get ids of all friends that also use Beer Buddy
 function getFriendIds(req, callback) {
     var friendIds = [];
 
@@ -220,6 +226,7 @@ function getFriendIds(req, callback) {
     });
 }
 
+// use friend ids to get full user info for all friends
 function getFriends(friendIds, callback) {
     // use friendIds to query mongoose for user objects
     var friends = [];
@@ -246,6 +253,7 @@ function getFriends(friendIds, callback) {
         })(friendIds[i]);
     }
 }
+
 
 router.get('/favorites', function(req, res) {
     if (typeof req.user != 'undefined') {
@@ -308,13 +316,6 @@ router.get('/facebook/friends', function(req, res) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if (typeof req.user != 'undefined') {
-        console.log(req.user.userId);
-        userId = req.user.userId;
-        isFavorite(req, 'FoPVhW', function(isFav){
-            console.log(isFav);
-        });
-    }
     res.locals.user = req.user;
     res.locals.loggedIn = (req.user) ? true : false;
     res.render('agency', { title: 'BeerBuddy' });
