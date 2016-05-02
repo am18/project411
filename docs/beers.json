@@ -1,0 +1,9 @@
+{
+  "_id" : ObjectId("571a4933483c62dd3ddcc1b4"),
+  "abv" : "5.4", // beer abv value
+  // beer description
+  "description" : "Named after General John Stark, the famous Revolutionary war hero. This brown porter has a full body, complex malt character a subtle chocolate flavor.",
+  "name" : "General John Stark Dark Porter", // beer name
+  "beerId" : "2e6Wfo", // beer breweryDB id
+  "__v" : 0
+}
