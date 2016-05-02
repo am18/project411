@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://project411:beerbuddy@ds013891.mlab.com:13891/beerbuddy');
+var configAuth = require('./auth');
+
+mongoose.connect(configAuth.mongo.mlab);
 
 mongoose.connection.on('open', function () {
     console.log('Connected to mongo server.');

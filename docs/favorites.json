@@ -1,0 +1,6 @@
+{
+  "_id" : ObjectId("57212a4a78fe00ba860fac08"),
+  "beerId" : "DobIDn", // favorite beer id
+  "userId" : "10208129024156106", // id of user who added this beer to favorites
+  "__v" : 0
+}
