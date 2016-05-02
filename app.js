@@ -10,8 +10,6 @@ var session = require('express-session');
 var config = require('./config/auth');
 
 var routes = require('./routes/index');
-var profile = require('./routes/profile');
-var friends = require('./routes/friends');
 
 var app = express();
 
@@ -38,8 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', routes);
-app.use('/profile', profile);
-app.use('/friends', friends);
 
 require('./routes/auth')(app, passport);
 
